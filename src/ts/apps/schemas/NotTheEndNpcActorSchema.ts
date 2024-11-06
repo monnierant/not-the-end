@@ -1,13 +1,13 @@
 import fields = foundry.data.fields;
 import { VitalStat, vitalStatSchema } from "./commonSchema";
 
-export interface MySystNpcActorSystem {
+export interface NotTheEndNpcActorSystem {
   type: string;
   health: VitalStat;
   note: string;
 }
 
-export const mySystNpcActorSchema = {
+export const notTheEndNpcActorSchema = {
   type: new fields.StringField({ initial: "character" }),
 
   health: new fields.SchemaField(vitalStatSchema()),
@@ -15,4 +15,4 @@ export const mySystNpcActorSchema = {
   note: new fields.StringField({ initial: "" }),
 };
 
-export type MySystNpcActorSchema = typeof mySystNpcActorSchema;
+export type NotTheEndNpcActorSchema = typeof notTheEndNpcActorSchema;

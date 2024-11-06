@@ -1,12 +1,12 @@
-<div class="mysyst-dialog-content">
+<div class="nte-dialog-content">
   <h2>{{ talent.name }} ({{ talent.value }})</h2>
-  <section class="mysyst-dialog-modifiers">
-    <div class="mysyst-dialog-modifier">
+  <section class="nte-dialog-modifiers">
+    <div class="nte-dialog-modifier">
       <label
-        for="mysyst-dialog-modifier-difficulty"
+        for="nte-dialog-modifier-difficulty"
         >{{ localize 'MYSYST.Global.difficulty' }}</label
       >
-      <select id="mysyst-dialog-modifier-difficulty" name="difficulty">
+      <select id="nte-dialog-modifier-difficulty" name="difficulty">
         {{#each difficultyLevels as |difficulty|}}
         <option value="{{ difficulty.value }}">
           {{ localize (concat 'MYSYST.Dialog.difficulty.' difficulty.label) }}

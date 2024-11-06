@@ -1,6 +1,6 @@
-import MySystActor from "../documents/MySystActor";
+import NotTheEndActor from "../documents/NotTheEndActor";
 import { VitalStat } from "../schemas/commonSchema";
-import { MySystActorSystem } from "../schemas/MySystActorSchema";
+import { NotTheEndActorSystem } from "../schemas/NotTheEndActorSchema";
 
 export const StatHelpers = {
   calculateActorVital: function (vital: VitalStat) {
@@ -11,14 +11,14 @@ export const StatHelpers = {
     };
   },
 
-  calculateActorHealth: function (actor: MySystActor) {
-    const syst = actor.system as any as MySystActorSystem;
+  calculateActorHealth: function (actor: NotTheEndActor) {
+    const syst = actor.system as any as NotTheEndActorSystem;
 
     return StatHelpers.calculateActorVital(syst.health);
   },
 
-  calculateActorMana: function (actor: MySystActor) {
-    const syst = actor.system as any as MySystActorSystem;
+  calculateActorMana: function (actor: NotTheEndActor) {
+    const syst = actor.system as any as NotTheEndActorSystem;
 
     return StatHelpers.calculateActorVital(syst.mana);
   },

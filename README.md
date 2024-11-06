@@ -1,4 +1,4 @@
-# MySyst - Foundry VTT System
+# NotTheEnd - Foundry VTT System
 
 ## Purpose
 
@@ -12,7 +12,7 @@ It works thanks to [foundry-vtt-types](https://github.com/League-of-Foundry-Deve
 
 Go to `system.json`and edit the system `id`
 
-Replace all ref to `MySyst` by your system name
+Replace all ref to `NotTheEnd` by your system name
 
 ## CI
 

@@ -1,10 +1,10 @@
-import { MySystActorSystem } from "../schemas/MySystActorSchema";
+import { NotTheEndActorSystem } from "../schemas/NotTheEndActorSchema";
 
-import MySystActorRollDialog from "../dialogs/MySystRollDialog";
+import NotTheEndActorRollDialog from "../dialogs/NotTheEndRollDialog";
 import { moduleId } from "../../constants";
 import { StatHelpers } from "../helpers/StatHelpers";
 
-export default class MySystActor extends Actor {
+export default class NotTheEndActor extends Actor {
   public constructor(data: any, context: any) {
     super(data, context);
   }
@@ -14,11 +14,11 @@ export default class MySystActor extends Actor {
   }
 
   public getTalent(id: number) {
-    return (this.system as any as MySystActorSystem).talents[id];
+    return (this.system as any as NotTheEndActorSystem).talents[id];
   }
 
   public async rollDialog(talentId: number) {
-    const dialog = new MySystActorRollDialog(this, talentId);
+    const dialog = new NotTheEndActorRollDialog(this, talentId);
     dialog.render(true);
   }
 
@@ -46,8 +46,9 @@ export default class MySystActor extends Actor {
   }
 
   public async updateHealth(health: number) {
-    // const syst = this.system as any as MySystActorSystem;
-    const syst: MySystActorSystem = this.system as any as MySystActorSystem;
+    // const syst = this.system as any as NotTheEndActorSystem;
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
 
     const healthValue = Math.clamp(
       syst.health.current + health,
@@ -61,8 +62,9 @@ export default class MySystActor extends Actor {
   }
 
   public async updateMana(mana: number) {
-    // const syst = this.system as any as MySystActorSystem;
-    const syst: MySystActorSystem = this.system as any as MySystActorSystem;
+    // const syst = this.system as any as NotTheEndActorSystem;
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
 
     const manaValue = Math.clamp(
       syst.mana.current + mana,

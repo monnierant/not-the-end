@@ -7,14 +7,14 @@ import {
   vitalStatSchema,
 } from "./commonSchema";
 
-export interface MySystActorSystem {
+export interface NotTheEndActorSystem {
   type: string;
   health: VitalStat;
   mana: VitalStat;
   talents: Talent[];
 }
 
-export const mySystActorSchema = {
+export const notTheEndActorSchema = {
   type: new fields.StringField({ initial: "character" }),
 
   health: new fields.SchemaField(vitalStatSchema()),
@@ -28,4 +28,4 @@ export const mySystActorSchema = {
   }),
 };
 
-export type MySystActorSchema = typeof mySystActorSchema;
+export type NotTheEndActorSchema = typeof notTheEndActorSchema;
