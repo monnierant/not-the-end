@@ -1,0 +1,14 @@
+@mixin flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.mysyst-dialog-modifiers {
+  @include flex;
+  flex-direction: row;
+  width: 100%;
+  margin: 0.5rem 0;
+  gap: 0.5rem;
+}

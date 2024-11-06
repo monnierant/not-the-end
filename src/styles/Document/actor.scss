@@ -1,0 +1,63 @@
+@mixin flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.hidden {
+  display: none;
+}
+
+.mysyst-vital-modificator {
+  width: 2.5rem !important;
+}
+
+.mysyst-separator {
+  width: 0.5rem;
+}
+
+.mysyst-health-update {
+  margin: 0 0.1rem;
+}
+
+.actor-sheet {
+  img {
+    height: 175px !important;
+    width: auto !important;
+  }
+
+  .sheet-header {
+    margin: 0 0 0.25rem 0;
+    input[type="number"] {
+      text-align: center;
+    }
+  }
+
+  .sheet-header .mysyst-header-section {
+    @include flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .mysyst-talents {
+    @include flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0 0 0.5em 0;
+    padding: 0.5em;
+    border: 1px solid #000;
+    border-radius: 5px;
+    background-color: #f0f0f0;
+  }
+
+  .mysyst-talent {
+    @include flex;
+    flex-direction: column;
+    gap: 0.1em;
+
+    input {
+      text-align: center;
+    }
+  }
+}

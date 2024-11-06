@@ -1,0 +1,23 @@
+{
+  "MYSYST": {
+    "Global": {
+      "difficulty": "Difficulté"
+    },
+    "Dialog": {
+      "difficulty": {
+        "easy": "Facile",
+        "medium": "Moyen",
+        "hard": "Difficile",
+        "veryhard": "Très Difficile",
+        "impossible": "Impossible"
+      }
+    },
+    "Actor": {
+      "mana": "Mana",
+      "health": "Santé",
+      "note": "Note",
+      "talents": "Talents",
+      "name": "Nom"
+    }
+  }
+}

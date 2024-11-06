@@ -1,0 +1,66 @@
+{{!-- ----------------------------------------- --}}
+{{!-- Header --}}
+{{!-- ----------------------------------------- --}}
+<header class="sheet-header">
+  <img
+    src="{{ actor.img }}"
+    data-edit="img"
+    title="{{ actor.name }}"
+    height="100"
+    width="177"
+  />
+  <div class="mysyst-header-content">
+    <div class="mysyst-header-section">
+      <div>
+        <label>{{localize 'MYSYST.Actor.health'}}</label>
+        <div class="mysyst-header-section">
+          <a class="mysyst-health-update" data-value="-1"
+            ><i class="fa-solid fa-square-caret-down"></i
+          ></a>
+          <input
+            name="system.health.current"
+            type="number"
+            value="{{ actor.system.health.current }}"
+          />
+          <input name="health" type="number" value="1" />
+          <a class="mysyst-health-update" data-value="1"
+            ><i class="fa-solid fa-square-caret-up"></i
+          ></a>
+          <div class="mysyst-separator"></div>
+          <input
+            class="mysyst-vital-max"
+            name="system.health.max"
+            type="number"
+            value="{{ actor.system.health.max }}"
+          />
+        </div>
+      </div>
+      {{#if (eq actor.system.type 'character')}}
+      <div>
+        <label>{{localize 'MYSYST.Actor.mana'}}</label>
+        <div class="mysyst-header-section">
+          <a class="mysyst-mana-update" data-value="-1"
+            ><i class="fa-solid fa-square-caret-down"></i
+          ></a>
+          <input
+            name="system.mana.current"
+            type="number"
+            value="{{ actor.system.mana.current }}"
+          />
+          <input name="mana" type="number" value="1" />
+          <a class="mysyst-mana-update" data-value="1"
+            ><i class="fa-solid fa-square-caret-up"></i
+          ></a>
+          <div class="mysyst-separator"></div>
+          <input
+            class="mysyst-vital-max"
+            name="system.mana.max"
+            type="number"
+            value="{{ actor.system.mana.max }}"
+          />
+        </div>
+      </div>
+      {{/if}}
+    </div>
+  </div>
+</header>

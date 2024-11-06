@@ -1,0 +1,73 @@
+name: Publish release
+
+on:
+  release:
+    types: published
+
+jobs:
+  build:
+    permissions:
+      contents: write
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - name: Install Vite
+        run: npm install -g vite
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Extract tag version number
+        id: get_version
+        uses: battila7/get-version-action@v2
+
+      - name: Troubleshoot
+        run: npx tsc --version
+
+      - name: Build Typescript
+        env:
+          MODULE_VERSION: ${{steps.get_version.outputs.version-without-v}}
+          GH_PROJECT: ${{github.repository}}
+          GH_TAG: ${{github.event.release.tag_name}}
+        run: tsc
+
+      - name: Run Vite build
+        env:
+          MODULE_VERSION: ${{steps.get_version.outputs.version-without-v}}
+          GH_PROJECT: ${{github.repository}}
+          GH_TAG: ${{github.event.release.tag_name}}
+        run: vite build
+
+      - name: Create zip archive
+        working-directory: dist
+        run: zip -r ./system.zip system.json template.json scripts/ templates/ languages/
+
+      - name: Troubleshoot
+        run: ls -la dist
+
+      - name: Update release with files
+        id: create_version_release
+        uses: ncipollo/release-action@v1
+        with:
+          allowUpdates: true # Set this to false if you want to prevent updating existing releases
+          name: ${{ github.event.release.name }}
+          draft: ${{ github.event.release.unpublished }}
+          prerelease: ${{ github.event.release.prerelease }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          artifacts: "./dist/system.json, ./dist/system.zip"
+          tag: ${{ github.event.release.tag_name }}
+          body: ${{ github.event.release.body }}
+
+      - name: Publish release
+        env:
+          RELEASE_GITHUB_URL: "${{ github.server_url }}/${{ github.repository }}"
+          RELEASE_VERSION: ${{ steps.get_version.outputs.version-without-v }}
+          RELEASE_AUTH_TOKEN: ${{ secrets.FVTT_PUBLISH_TOKEN }}
+        run: npm install -g ts-node && npm run publish

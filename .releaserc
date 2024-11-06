@@ -1,0 +1,18 @@
+{
+  "branches": [
+    "main",
+    {
+      "name": "beta",
+      "prerelease": true
+    },
+    {
+      "name": "alpha",
+      "prerelease": true
+    }
+  ],
+  "repositoryUrl": "https://github.com/monnierant/mySyst",
+  "plugins": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/github"
+  ]
+}

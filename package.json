@@ -1,0 +1,26 @@
+{
+  "name": "mySyst",
+  "version": "1.0.1",
+  "description": "A template project for FoundryVTT modules using Typescript",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc && vite build",
+    "watch": "tsc && vite build --watch",
+    "publish": "node publish.cjs"
+  },
+  "devDependencies": {
+    "@league-of-foundry-developers/foundry-vtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#v12/main",
+    "axios": "^1.7.3",
+    "rollup-plugin-copy": "^3.5.0",
+    "rollup-plugin-sass": "^1.13.2",
+    "rollup-plugin-scss": "^4.0.0",
+    "sass": "^1.79.4",
+    "typescript": "^5.4",
+    "vite": "^5.4.8"
+  },
+  "optionalDependencies": {
+    "@rollup/rollup-linux-x64-gnu": "*"
+  }
+}

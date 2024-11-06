@@ -1,0 +1,32 @@
+{{log actor}}
+
+<form class="actor-sheet {{ cssClass }}" autocomplete="off">
+  {{> (partial moduleId "actor/header.hbs") moduleId=moduleId actor=actor}}
+  <section class="mysyst-talents">
+    {{#each actor.system.talents as |talent|}}
+    <div class="mysyst-talent">
+      <input
+        type="text"
+        name="system.talents.{{ @index }}.name"
+        value="{{ talent.name }}"
+        placeholder="{{localize 'MYSYST.Actor.talents'}}"
+      />
+      <input
+        type="number"
+        name="system.talents.{{ @index }}.value"
+        value="{{ talent.value }}"
+      />
+      <textarea name="system.talents.{{ @index }}.description" rows="3">{{
+        talent.description
+      }}</textarea>
+      <button
+        type="button"
+        class="mysyst-talent-roll"
+        data-talent="{{ @index }}"
+      >
+        <i class="fa-solid fa-dice"></i>
+      </button>
+    </div>
+    {{/each}}
+  </section>
+</form>

@@ -1,0 +1,33 @@
+.health-bar {
+  width: 100%; // Width controls how long the health bar will be
+  height: 0.5rem; // Height of the health bar
+  background-color: rgba(0, 0, 0, 0.2); // Background color for the bar
+  border: 1px solid var(--color-border-light-tertiary); // Border for the health bar
+  border-radius: 0.25rem; // Rounded corners for smooth edges
+  overflow: hidden; // Ensures the fill stays within the border
+  position: relative; // Relative positioning for inner elements
+  .health-bar-fill {
+    height: 100%; // The fill takes the full height of the bar
+    background-color: #a6d6d2; // Darker color representing the health // #4a8a85
+    // width: 100%;                  // Initially, 100% width (full health)
+    transition: width 0.3s ease; // Smooth transition when health changes
+  }
+
+  .health-bar-limit {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 3px; // Thin vertical mark
+    background-color: #ffb700; // Darkened golden color for the limit mark
+    // left: 50%; // Example: placed at 50% of the bar width (half-health)
+    &::before {
+      content: "";
+      width: 10px; // Circle width
+      height: 10px; // Circle height
+      background-color: #ffb700; // Darkened golden color
+      border-radius: 50%; // Makes it a perfect circle
+      position: relative;
+      top: -6px; // Adjusts the position of the circle above the bar
+    }
+  }
+}

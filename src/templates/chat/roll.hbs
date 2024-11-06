@@ -1,0 +1,31 @@
+<div class="dice-roll">
+  <div class="dice-result">
+    <div
+      class="cowboy-dice-tooltip dice-tooltip expanded"
+      style="display: block"
+    >
+      <section class="tooltip-part">
+        <div class="dice">
+          <header class="part-header flexrow">
+            <span class="part-formula">{{ result.formula }} </span>
+
+            <span class="part-total"
+              >{{ talent.name }} : {{ talent.value }} + {{ difficulty }}
+            </span>
+          </header>
+          <h4
+            class="dice-total
+          {{#if success}}
+          success
+          {{else}}
+          failure
+          {{/if}}
+          "
+          >
+            {{ result.total }}
+          </h4>
+        </div>
+      </section>
+    </div>
+  </div>
+</div>
