@@ -1,17 +1,14 @@
 import { defaultLenght } from "../../constants";
 import fields = foundry.data.fields;
-import {
-  Talent,
-  talentSchema,
-  VitalStat,
-  vitalStatSchema,
-} from "./commonSchema";
+import { Trait, traitSchema, VitalStat, vitalStatSchema } from "./commonSchema";
 
 export interface NotTheEndActorSystem {
   type: string;
   health: VitalStat;
   mana: VitalStat;
-  talents: Talent[];
+  archetyp: Trait;
+  quality: Trait[];
+  ability: Trait[];
 }
 
 export const notTheEndActorSchema = {
@@ -20,7 +17,16 @@ export const notTheEndActorSchema = {
   health: new fields.SchemaField(vitalStatSchema()),
   mana: new fields.SchemaField(vitalStatSchema()),
 
-  talents: new fields.ArrayField(new fields.SchemaField(talentSchema()), {
+  archetyp: new fields.SchemaField(traitSchema()),
+
+  quality: new fields.ArrayField(new fields.SchemaField(traitSchema()), {
+    initial: Array(defaultLenght.talent).fill({
+      name: "",
+      description: "",
+    }),
+  }),
+
+  ability: new fields.ArrayField(new fields.SchemaField(traitSchema()), {
     initial: Array(defaultLenght.talent).fill({
       name: "",
       description: "",

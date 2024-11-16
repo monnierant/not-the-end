@@ -30,6 +30,8 @@ declare global {
 async function preloadTemplates(): Promise<any> {
   const templatePaths = [
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
+    `systems/${moduleId}/templates/partials/actor/traits.hbs`,
+    `systems/${moduleId}/templates/partials/hexagon.hbs`,
   ];
 
   return loadTemplates(templatePaths);

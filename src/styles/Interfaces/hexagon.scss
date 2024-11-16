@@ -1,0 +1,88 @@
+// :root {
+// }
+
+.nte-hexagon-section {
+  --hex-color: #64c7cc;
+  --hex-gap: 5;
+  --hexagon-scale: 1;
+  --hex-size-height-base: 60;
+  --hex-size-width-mid-base: 34.64;
+  --hex-size-width-ext-base: 17.32;
+  --hex-size-height: calc(var(--hex-size-height-base) * var(--hexagon-scale));
+  --hex-size-width-mid: calc(
+    var(--hex-size-width-mid-base) * var(--hexagon-scale)
+  );
+  --hex-size-width-ext: calc(
+    var(--hex-size-width-ext-base) * var(--hexagon-scale)
+  );
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hexagon-container {
+  --hex-size-width: calc(
+    var(--hex-size-width-mid) + 2 * var(--hex-size-width-ext)
+  );
+  --hex-corrector-amount: calc(var(--hex-size-width) - var(--hex-size-height));
+  --hex-corrector: 0;
+  height: calc((5 * var(--hex-size-height) + 5 * var(--hex-gap)) * 1px);
+  width: calc(
+    (
+        5 * (var(--hex-size-width-mid) + var(--hex-size-width-ext)) + 6 *
+          var(--hex-gap)
+      ) * 1px + 2px
+  );
+}
+
+.hexagon-placement-init {
+  position: absolute;
+
+  top: calc(50% - calc(var(--hex-size-height) / 2 * 1px));
+  left: calc(50% - calc(var(--hex-size-height) / 2 * 1px));
+}
+
+.hexagon-placement {
+  position: absolute;
+  --correct: calc(var(--hex-corrector) * var(--hex-corrector-amount));
+  --x: calc(
+    var(--row) * (var(--hex-size-height) + var(--hex-gap) - var(--correct)) *
+      cos(var(--index) * 360deg / (6 * var(--row)) + 90deg)
+  );
+  --y: calc(
+    var(--row) * (var(--hex-size-height) + var(--hex-gap) - var(--correct)) *
+      sin(var(--index) * 360deg / (6 * var(--row)) + 90deg)
+  );
+  --test: mod(14, 5);
+  top: calc(50% + var(--y) * 1px - calc(var(--hex-size-height) / 2 * 1px));
+  left: calc(50% + var(--x) * 1px - calc(var(--hex-size-height) / 2 * 1px));
+}
+
+.hexagon {
+  height: calc(var(--hex-size-height) * 1px);
+  width: calc(var(--hex-size-width-mid) * 1px);
+  background-color: var(--hex-color);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hexagon:before,
+.hexagon:after {
+  content: "";
+  position: absolute;
+  height: 0;
+  border-top: calc(var(--hex-size-height) / 2 * 1px) solid transparent;
+  border-bottom: calc(var(--hex-size-height) / 2 * 1px) solid transparent;
+}
+
+.hexagon:before {
+  left: 100%;
+  border-left: calc(var(--hex-size-width-ext) * 1px) solid var(--hex-color);
+}
+
+.hexagon:after {
+  right: 100%;
+  border-right: calc(var(--hex-size-width-ext) * 1px) solid var(--hex-color);
+}

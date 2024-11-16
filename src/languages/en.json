@@ -13,6 +13,9 @@
       }
     },
     "Actor": {
+      "archetyp": "Archetype",
+      "quality": "Quality",
+      "ability": "Ability",
       "mana": "Mana",
       "health": "Health",
       "note": "Note",

@@ -10,11 +10,11 @@ export default class NotTheEndActor extends Actor {
   }
 
   public getTalentValueById(talentId: number) {
-    return this.getTalent(talentId).value;
+    return this.getTalent(talentId).name;
   }
 
   public getTalent(id: number) {
-    return (this.system as any as NotTheEndActorSystem).talents[id];
+    return (this.system as any as NotTheEndActorSystem).ability[id];
   }
 
   public async rollDialog(talentId: number) {
@@ -24,7 +24,7 @@ export default class NotTheEndActor extends Actor {
 
   public async rollTalent(talentId: number, difficulty: number) {
     const talent = this.getTalent(talentId);
-    const value = talent.value + difficulty;
+    const value = difficulty;
     const roll = await new Roll(`1d100`).roll();
     const success = roll.total <= value;
     const content = await renderTemplate(
