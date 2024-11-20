@@ -20,14 +20,14 @@ export const notTheEndActorSchema = {
   archetyp: new fields.SchemaField(traitSchema()),
 
   quality: new fields.ArrayField(new fields.SchemaField(traitSchema()), {
-    initial: Array(defaultLenght.talent).fill({
+    initial: Array(defaultLenght.quality).fill({
       name: "",
       description: "",
     }),
   }),
 
   ability: new fields.ArrayField(new fields.SchemaField(traitSchema()), {
-    initial: Array(defaultLenght.talent).fill({
+    initial: Array(defaultLenght.ability).fill({
       name: "",
       description: "",
     }),

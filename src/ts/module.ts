@@ -13,6 +13,7 @@ import { notTheEndActorSchema } from "./apps/schemas/NotTheEndActorSchema";
 import NotTheEndActorDataModel from "./apps/datamodels/NotTheEndActorDataModel";
 import MyNpcRoleActorDataModel from "./apps/datamodels/NotTheEndNpcActorDataModel";
 import NotTheEndActor from "./apps/documents/NotTheEndActor";
+import { mod } from "./handlebarsHelpers/mod";
 
 declare global {
   interface DocumentClassConfig {
@@ -46,6 +47,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("range", range);
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
+  Handlebars.registerHelper("mod", mod);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;

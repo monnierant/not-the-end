@@ -64,12 +64,7 @@
   .nte-traits {
     .nte-hexagon-section {
       --hex-color: #f0f0f0;
-      --hexagon-scale: 1.5;
-    }
-    .hexagon {
-      @include flex;
-      flex-direction: column;
-      gap: 0.1em;
+      --hexagon-scale: 1.7;
     }
   }
 }
