@@ -33,6 +33,7 @@ async function preloadTemplates(): Promise<any> {
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
     `systems/${moduleId}/templates/partials/actor/traits.hbs`,
     `systems/${moduleId}/templates/partials/hexagon.hbs`,
+    `systems/${moduleId}/templates/partials/piles.hbs`,
   ];
 
   return loadTemplates(templatePaths);

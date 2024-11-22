@@ -31,7 +31,9 @@ export default class NotTheEndItemSheet extends ActorSheet {
   override activateListeners(html: JQuery) {
     super.activateListeners(html);
     // Roll handlers, click handlers, etc. would go here.
-    html.find(".nte-talent-roll").on("click", this._onRollDice.bind(this));
+    html
+      .find(".nte-actor-roll-button")
+      .on("click", this._onRollDice.bind(this));
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;

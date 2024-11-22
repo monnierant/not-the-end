@@ -1,30 +1,36 @@
 <div class="dice-roll">
+  {{ log ..}}
   <div class="dice-result">
-    <div
-      class="cowboy-dice-tooltip dice-tooltip expanded"
-      style="display: block"
-    >
+    <div class="nte-dice-tooltip dice-tooltip expanded" style="display: block">
       <section class="tooltip-part">
         <div class="dice">
           <header class="part-header flexrow">
             <span class="part-formula">{{ result.formula }} </span>
 
+            {{!--
             <span class="part-total"
               >{{ talent.name }} : {{ talent.value }} + {{ difficulty }}
             </span>
+            --}}
           </header>
-          <h4
-            class="dice-total
-          {{#if success}}
-          success
-          {{else}}
-          failure
-          {{/if}}
-          "
-          >
-            {{ result.total }}
+          <h4 class="dice-total">
+            <div class="nte-pile">
+              {{#each results as |result|}}
+              {{#if result}}
+              <i class="good fa-solid fa-circle-dot"></i>
+              {{else}}
+              <i class="bad fa-solid fa-circle"></i>
+              {{/if}}
+              {{/each}}
+            </div>
           </h4>
         </div>
+      </section>
+      <section class="nte-roll-actions">
+        <button class="roll-action" data-action="risk">
+          <i class="fa-solid fa-sack-dollar"></i>
+          {{localize "NTE.Actor.risk"}}
+        </button>
       </section>
     </div>
   </div>

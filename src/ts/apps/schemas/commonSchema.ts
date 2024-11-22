@@ -13,8 +13,19 @@ export const vitalStatSchema = () => ({
 
 export interface Trait {
   name: string;
+  good: number;
+  bad: number;
+}
+
+export interface TraitDto {
+  id: number;
+  type: string;
+  good: number;
+  bad: number;
 }
 
 export const traitSchema = () => ({
   name: new fields.StringField({ initial: "" }),
+  good: new fields.NumberField({ initial: 0 }),
+  bad: new fields.NumberField({ initial: 0 }),
 });

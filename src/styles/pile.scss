@@ -1,0 +1,18 @@
+@mixin flex {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.nte-pile {
+  @include flex;
+  flex-direction: row;
+
+  .good {
+    color: #f29500;
+  }
+  .bad {
+    color: #56009c; //#442593;
+  }
+}

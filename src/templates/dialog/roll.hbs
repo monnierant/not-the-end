@@ -1,20 +1,77 @@
 <div class="nte-dialog-content">
-  <h2>{{ talent.name }} ({{ talent.value }})</h2>
   <section class="nte-dialog-modifiers">
     <div class="nte-dialog-modifier">
       <label
         for="nte-dialog-modifier-difficulty"
-        >{{ localize 'MYSYST.Global.difficulty' }}</label
+        >{{ localize 'NTE.Global.difficulty' }}</label
       >
       <select id="nte-dialog-modifier-difficulty" name="difficulty">
         {{#each difficultyLevels as |difficulty|}}
         <option value="{{ difficulty.value }}">
-          {{ localize (concat 'MYSYST.Dialog.difficulty.' difficulty.label) }}
+          {{ localize (concat 'NTE.Dialog.difficulty.' difficulty.label) }}
           ({{ difficulty.value }})
         </option>
         {{/each}}
       </select>
+      <label for="nte-dialog-nb-draw">{{ localize 'NTE.Global.draw' }}</label>
+      <select id="nte-dialog-nb-draw" name="draw">
+        {{#each drawLevels as |draw|}}
+        <option value="{{ draw }}">
+          {{ draw }}
+        </option>
+        {{/each}}
+      </select>
     </div>
+  </section>
+  <section class="nte-dialog-traits">
+    {{#each actor.system.archetyp as |trait index|}}
+    {{#if trait.name}}
+    <div
+      class="nte-dialog-trait"
+      data-good="{{ trait.good }}"
+      data-bad="{{ trait.bad }}"
+      data-id="{{ @index }}"
+      data-tpe="archetyp"
+    >
+      <div class="nte-dialog-trait-name">
+        {{ trait.name }}
+      </div>
+      {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+    </div>
+    {{/if}}
+    {{/each}}
+    {{#each actor.system.quality as |trait index|}}
+    {{#if trait.name}}
+    <div
+      class="nte-dialog-trait"
+      data-good="{{ trait.good }}"
+      data-bad="{{ trait.bad }}"
+      data-id="{{ @index }}"
+      data-tpe="quality"
+    >
+      <div class="nte-dialog-trait-name">
+        {{ trait.name }}
+      </div>
+      {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+    </div>
+    {{/if}}
+    {{/each}}
+    {{#each actor.system.ability as |trait index|}}
+    {{#if trait.name}}
+    <div
+      class="nte-dialog-trait"
+      data-good="{{ trait.good }}"
+      data-bad="{{ trait.bad }}"
+      data-id="{{ @index }}"
+      data-tpe="ability"
+    >
+      <div class="nte-dialog-trait-name">
+        {{ trait.name }}
+      </div>
+      {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+    </div>
+    {{/if}}
+    {{/each}}
   </section>
 </div>
 <div class="dialog-buttons">

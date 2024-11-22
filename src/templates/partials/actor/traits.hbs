@@ -6,12 +6,13 @@
           <div class="hexagon-content">
             <textarea
               name="system.archetyp.name"
-              placeholder="{{localize 'MYSYST.Actor.archetyp'}}"
-              >{{ actor.system.archetyp.name }}</textarea>
+              placeholder="{{localize 'NTE.Actor.archetyp'}}"
+              >{{ actor.system.archetyp.name }}</textarea
+            >
           </div>
           <div class="hexagon-bottom">
             <div class="hexagon-bottom-value">
-              1 o 2 a
+              {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
             </div>
           </div>
         </div>
@@ -27,12 +28,13 @@
           <div class="hexagon-content">
             <textarea
               name="system.quality.{{ @index }}.name"
-              placeholder="{{localize 'MYSYST.Actor.quality'}}"
-              >{{ trait.name }}</textarea>
+              placeholder="{{localize 'NTE.Actor.quality'}}"
+              >{{ trait.name }}</textarea
+            >
           </div>
           <div class="hexagon-bottom">
             <div class="hexagon-bottom-value">
-              1 o 2 a
+              {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>
         </div>
@@ -49,17 +51,18 @@
           <div class="hexagon-content">
             <textarea
               name="system.ability.{{ @index }}.name"
-              placeholder="{{localize 'MYSYST.Actor.ability'}}"
-              >{{ trait.name }}</textarea>
+              placeholder="{{localize 'NTE.Actor.ability'}}"
+              >{{ trait.name }}</textarea
+            >
           </div>
           <div class="hexagon-bottom">
             <div class="hexagon-bottom-value">
-              1 o 2 a
+              {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>
         </div>
       </div>
       {{/each}}
-
+    </div>
   </section>
 </div>

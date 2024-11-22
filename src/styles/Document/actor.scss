@@ -65,6 +65,9 @@
     .nte-hexagon-section {
       --hex-color: #f0f0f0;
       --hexagon-scale: 1.7;
+      textarea {
+        text-align: center;
+      }
     }
   }
 }

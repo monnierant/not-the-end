@@ -1,18 +1,21 @@
 {
-  "MYSYST": {
+  "NTE": {
     "Global": {
-      "difficulty": "Difficulté"
+      "difficulty": "Difficulté",
+      "draw": "Piocher"
     },
     "Dialog": {
       "difficulty": {
+        "veryeasy": "Très facile",
         "easy": "Facile",
-        "medium": "Moyen",
+        "normal": "Moyen",
         "hard": "Difficile",
-        "veryhard": "Très Difficile",
-        "impossible": "Impossible"
+        "veryhard": "Très difficile",
+        "impossible": "Presque impossible"
       }
     },
     "Actor": {
+      "risk": "Risque",
       "archetyp": "Archétype",
       "quality": "Qualité",
       "ability": "Capacité",
