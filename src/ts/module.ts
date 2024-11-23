@@ -14,6 +14,7 @@ import NotTheEndActorDataModel from "./apps/datamodels/NotTheEndActorDataModel";
 import MyNpcRoleActorDataModel from "./apps/datamodels/NotTheEndNpcActorDataModel";
 import NotTheEndActor from "./apps/documents/NotTheEndActor";
 import { mod } from "./handlebarsHelpers/mod";
+import NteRollsRegister from "./apps/rolls/NteRollsRegister";
 
 declare global {
   interface DocumentClassConfig {
@@ -63,3 +64,22 @@ Hooks.once("init", () => {
 
   preloadTemplates();
 });
+
+Hooks.on(
+  "renderChatMessage",
+  (app: Application, html: JQuery, data: any): void => {
+    if (app === undefined) {
+      console.log("app is undefined");
+    }
+
+    if (data === undefined) {
+      console.log("data is undefined");
+    }
+
+    if (html === undefined) {
+      console.log("html is undefined");
+    }
+
+    NteRollsRegister.registerTriggers(html);
+  }
+);

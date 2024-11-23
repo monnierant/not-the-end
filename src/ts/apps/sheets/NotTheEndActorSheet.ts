@@ -54,8 +54,7 @@ export default class NotTheEndItemSheet extends ActorSheet {
   // Event Handlers
   private async _onRollDice(event: JQuery.ClickEvent) {
     event.preventDefault();
-    const talentId = event.currentTarget.dataset.talent;
-    await (this.actor as NotTheEndActor).rollDialog(talentId);
+    await (this.actor as NotTheEndActor).rollDialog();
   }
 
   private async _onUpdateHealth(event: JQuery.ClickEvent) {

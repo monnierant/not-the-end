@@ -26,21 +26,6 @@
           </h4>
         </div>
       </section>
-      {{#if (lt nbDraw 5)}}
-      <section class="nte-roll-actions">
-        <button
-          class="nte-risk"
-          data-actor-id="{{ actor.id }}"
-          data-draw="{{ nbDraw }}"
-          data-good="{{ good }}"
-          data-bad="{{ bad }}"
-          data-results="{{ resultsJson }}"
-        >
-          <i class="fa-solid fa-sack-dollar"></i>
-          {{localize "NTE.Actor.risk"}}
-        </button>
-      </section>
-      {{/if}}
     </div>
   </div>
 </div>

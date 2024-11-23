@@ -6,12 +6,7 @@ export default class NotTheEndActorRollDialog extends Dialog {
   // ========================================
   // Constructor
   // ========================================
-  constructor(
-    actor: NotTheEndActor,
-    talentId: number,
-    options: any = {},
-    data: any = {}
-  ) {
+  constructor(actor: NotTheEndActor, options: any = {}, data: any = {}) {
     // Call the parent constructor
 
     const _options = {
@@ -39,14 +34,12 @@ export default class NotTheEndActorRollDialog extends Dialog {
 
     // Set the actor
     this.actor = actor;
-    this.talentId = talentId;
   }
 
   // ========================================
   // Properties
   // ========================================
   public actor: NotTheEndActor;
-  public talentId: number;
   // public roll: CowboyBebopRoll | undefined;
 
   // Define the template to use for this sheet
@@ -58,7 +51,6 @@ export default class NotTheEndActorRollDialog extends Dialog {
   override getData() {
     let data: any = super.getData();
     data.actor = this.actor;
-    data.talent = this.actor.getTalent(this.talentId);
     data.difficultyLevels = difficultyLevels;
     data.moduleId = moduleId;
     data.drawLevels = drawLevels;
@@ -97,7 +89,6 @@ export default class NotTheEndActorRollDialog extends Dialog {
       );
 
     await this.actor.rollTalent(
-      this.talentId,
       nbDraw,
       isNaN(difficulty) ? 0 : difficulty,
       traits

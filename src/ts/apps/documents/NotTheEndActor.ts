@@ -18,18 +18,16 @@ export default class NotTheEndActor extends Actor {
     return (this.system as any as NotTheEndActorSystem).ability[id];
   }
 
-  public async rollDialog(talentId: number) {
-    const dialog = new NotTheEndActorRollDialog(this, talentId);
+  public async rollDialog() {
+    const dialog = new NotTheEndActorRollDialog(this);
     dialog.render(true);
   }
 
   public async rollTalent(
-    talentId: number,
     nbDraw: number,
     difficulty: number,
     traits: TraitDto[]
   ) {
-    const talent = this.getTalent(talentId);
     const good =
       traits.reduce((sum: number, trait: TraitDto) => sum + trait.good, 0) +
       traits.length;
@@ -42,13 +40,38 @@ export default class NotTheEndActor extends Actor {
       `systems/${moduleId}/templates/chat/roll.hbs`,
       {
         actor: this,
-        talent: talent,
-        difficulty: difficulty,
         results: results,
+        resultsJson: results.join(","),
         good: good - (results.filter((r) => r).length - 1),
         bad: bad - (results.filter((r) => !r).length - 1),
         traits: traits,
         nbDraw: nbDraw,
+      }
+    );
+
+    ChatMessage.create({
+      speaker: ChatMessage.getSpeaker({ actor: this }),
+      content: content,
+    });
+  }
+
+  public async rollRisk(
+    good: number,
+    bad: number,
+    draw: number,
+    results: boolean[]
+  ) {
+    const newResults = results.concat(
+      await this.drawToken(good, bad, 5 - draw)
+    );
+
+    const content = await renderTemplate(
+      `systems/${moduleId}/templates/chat/risk.hbs`,
+      {
+        actor: this,
+        results: newResults,
+        good: good - (results.filter((r) => r).length - 1),
+        bad: bad - (results.filter((r) => !r).length - 1),
       }
     );
 
