@@ -9,12 +9,37 @@
     height="100"
     width="177"
   />
-  <div class="nte-actor-roll">
-    <button
-      class="nte-actor-roll-button"
-      data-action="roll"
-      title="{{localize 'NTE.Actor.roll'}}"
-    >
-      <i class="fas fa-dice"></i>
-    </button>
+  <div>
+    <div class="nte-actor-roll">
+      <button
+        class="nte-actor-roll-button"
+        data-action="roll"
+        title="{{localize 'NTE.Actor.roll'}}"
+      >
+        <i class="fas fa-dice"></i>
+      </button>
+    </div>
+    {{#if edit.isEnable }}
+    <div class="nte-actor-controles">
+      <button class="nte-actor-edit" data-type="good" data-value="1">
+        <div>+1&nbsp;<i class="good fa-solid fa-circle-dot"></i></div>
+      </button>
+      <button class="nte-actor-edit" data-type="good" data-value="-1">
+        <div>-1&nbsp;<i class="good fa-solid fa-circle-dot"></i></div>
+      </button>
+      <button class="nte-actor-edit" data-type="bad" data-value="1">
+        <div>+1&nbsp;<i class="bad fa-solid fa-circle"></i></div>
+      </button>
+      <button class="nte-actor-edit" data-type="bad" data-value="-1">
+        <div>-1&nbsp;<i class="bad fa-solid fa-circle"></i></div>
+      </button>
+      <button class="nte-actor-edit" data-type="clear">
+        <i class="fa-solid fa-circle-xmark"></i>
+      </button>
+      <button class="nte-actor-edit" data-type="quit">
+        <i class="fa-solid fa-door-open"></i>
+      </button>
+    </div>
+    {{/if}}
+  </div>
 </header>

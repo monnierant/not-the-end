@@ -70,4 +70,32 @@
       }
     }
   }
+
+  .nte-actor-edit.active {
+    background-color: #1e9b8e;
+  }
+
+  .hexagon-bottom-value {
+    @include flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    &:hover {
+      cursor: pointer;
+      background-color: #1e9b8e; // #6a6a6aa8;
+    }
+  }
+
+  .hexagon.active {
+    --hex-color: #1e9b8e;
+  }
+
+  .nte-actor-controles {
+    @include flex;
+    flex-direction: row;
+    gap: 0.1rem;
+    div {
+      white-space: nowrap;
+    }
+  }
 }

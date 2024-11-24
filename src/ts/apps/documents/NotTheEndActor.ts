@@ -136,4 +136,113 @@ export default class NotTheEndActor extends Actor {
       system: { mana: { current: manaValue } },
     });
   }
+
+  public async updateGood(editType: string, editValue: number, value: number) {
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
+
+    switch (editType) {
+      case "archetyp":
+        await this.update({
+          system: {
+            archetyp: {
+              ...syst.archetyp,
+              good: Math.max(syst.archetyp.good + value),
+            },
+          },
+        });
+        break;
+      case "quality":
+        await this.update({
+          system: {
+            quality: syst.quality.map((q, i) =>
+              i === editValue ? { ...q, good: Math.max(0, q.good + value) } : q
+            ),
+          },
+        });
+        break;
+      case "ability":
+        await this.update({
+          system: {
+            ability: syst.quality.map((q, i) =>
+              i === editValue ? { ...q, good: Math.max(0, q.good + value) } : q
+            ),
+          },
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  public async updateBad(editType: string, editValue: number, value: number) {
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
+
+    switch (editType) {
+      case "archetyp":
+        await this.update({
+          system: {
+            archetyp: {
+              ...syst.archetyp,
+              bad: Math.max(syst.archetyp.bad + value),
+            },
+          },
+        });
+        break;
+      case "quality":
+        await this.update({
+          system: {
+            quality: syst.quality.map((q, i) =>
+              i === editValue ? { ...q, bad: Math.max(0, q.bad + value) } : q
+            ),
+          },
+        });
+        break;
+      case "ability":
+        await this.update({
+          system: {
+            ability: syst.quality.map((q, i) =>
+              i === editValue ? { ...q, bad: Math.max(0, q.bad + value) } : q
+            ),
+          },
+        });
+        break;
+      default:
+        break;
+    }
+  }
+
+  public async updateClear(editType: string, editValue: number) {
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
+
+    switch (editType) {
+      case "archetyp":
+        await this.update({
+          system: { archetyp: { ...syst.archetyp, bad: 0, good: 0 } },
+        });
+        break;
+      case "quality":
+        await this.update({
+          system: {
+            quality: syst.quality.map((q, i) =>
+              i === editValue ? { ...q, bad: 0, good: 0 } : q
+            ),
+          },
+        });
+        break;
+      case "ability":
+        await this.update({
+          system: {
+            ability: syst.quality.map((q, i) =>
+              i === editValue ? { ...q, bad: 0, good: 0 } : q
+            ),
+          },
+        });
+        break;
+      default:
+        break;
+    }
+  }
 }

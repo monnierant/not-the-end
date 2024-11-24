@@ -1,8 +1,11 @@
 <div class="nte-traits">
+  {{log edit}}
   <section class="nte-hexagon-section">
     <div class="hexagon-container">
       <div class="hexagon-placement-init">
-        <div class="hexagon">
+        <div
+          class="hexagon {{ ternary (and (eq edit.type 'archetyp') (eq edit.value 0)) 'active' '' }}"
+        >
           <div class="hexagon-content">
             <textarea
               name="system.archetyp.name"
@@ -11,7 +14,11 @@
             >
           </div>
           <div class="hexagon-bottom">
-            <div class="hexagon-bottom-value">
+            <div
+              class="hexagon-bottom-value"
+              data-value="0"
+              data-type="archetyp"
+            >
               {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
             </div>
           </div>
@@ -24,7 +31,9 @@
         data-row="1"
         data-index="0"
       >
-        <div class="hexagon">
+        <div
+          class="hexagon {{ ternary (and (eq ../edit.type 'quality') (eq ../edit.value @index)) 'active' '' }}"
+        >
           <div class="hexagon-content">
             <textarea
               name="system.quality.{{ @index }}.name"
@@ -33,7 +42,11 @@
             >
           </div>
           <div class="hexagon-bottom">
-            <div class="hexagon-bottom-value">
+            <div
+              class="hexagon-bottom-value"
+              data-value="{{ @index }}"
+              data-type="quality"
+            >
               {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>
@@ -47,7 +60,9 @@
         data-row="1"
         data-index="0"
       >
-        <div class="hexagon">
+        <div
+          class="hexagon {{ ternary (and (eq ../edit.type 'ability') (eq ../edit.value @index)) 'active' '' }}"
+        >
           <div class="hexagon-content">
             <textarea
               name="system.ability.{{ @index }}.name"
@@ -56,7 +71,11 @@
             >
           </div>
           <div class="hexagon-bottom">
-            <div class="hexagon-bottom-value">
+            <div
+              class="hexagon-bottom-value"
+              data-value="{{ @index }}"
+              data-type="ability"
+            >
               {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>

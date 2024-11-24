@@ -8,11 +8,12 @@
 .nte-pile {
   @include flex;
   flex-direction: row;
-
-  .good {
+}
+i {
+  &.good {
     color: #f29500;
   }
-  .bad {
+  &.bad {
     color: #56009c; //#442593;
   }
 }
