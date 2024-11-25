@@ -18,7 +18,6 @@ export default class NteRollsRegister {
 
     if (actor) {
       await actor.rollRisk(good, bad, draw, results);
-      // console.log(actor);
     }
   }
 }
