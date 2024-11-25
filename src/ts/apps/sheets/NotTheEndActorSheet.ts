@@ -2,7 +2,7 @@ import { moduleId, difficultyLevels } from "../../constants";
 import NotTheEndActor from "../documents/NotTheEndActor";
 import { StatHelpers } from "../helpers/StatHelpers";
 
-export default class NotTheEndItemSheet extends ActorSheet {
+export default class NotTheEndActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
     super(object, { ...options, width: 610, height: 750 });
     console.log("this.actor.type", this.actor.type);
@@ -67,7 +67,7 @@ export default class NotTheEndItemSheet extends ActorSheet {
   // Event Handlers
   private async _onRollDice(event: JQuery.ClickEvent) {
     event.preventDefault();
-    await (this.actor as NotTheEndActor).rollDialog();
+    await (this.actor as NotTheEndActor).rollDialog(this);
   }
 
   private async _onUpdateHealth(event: JQuery.ClickEvent) {

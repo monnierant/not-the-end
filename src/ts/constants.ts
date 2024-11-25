@@ -18,3 +18,4 @@ export const difficultyLevels = [
 export const drawLevels = [1, 2, 3, 4, 5];
 
 export const moduleId: string = id;
+export const moduleIdCore = id as "nte";

@@ -14,6 +14,9 @@
         "impossible": "Presque impossible"
       }
     },
+    "Settings": {
+      "showbag": "Afficher le contenu du sac aux joueurs"
+    },
     "Actor": {
       "risk": "Risque",
       "archetyp": "Archétype",

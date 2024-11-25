@@ -1,12 +1,18 @@
 import { difficultyLevels, drawLevels, moduleId } from "../../constants";
 import NotTheEndActor from "../documents/NotTheEndActor";
 import { TraitDto } from "../schemas/commonSchema";
+import NotTheEndActorSheet from "../sheets/NotTheEndActorSheet";
 
 export default class NotTheEndActorRollDialog extends Dialog {
   // ========================================
   // Constructor
   // ========================================
-  constructor(actor: NotTheEndActor, options: any = {}, data: any = {}) {
+  constructor(
+    actor: NotTheEndActor,
+    sheet: NotTheEndActorSheet,
+    options: any = {},
+    data: any = {}
+  ) {
     // Call the parent constructor
 
     const _options = {
@@ -34,12 +40,14 @@ export default class NotTheEndActorRollDialog extends Dialog {
 
     // Set the actor
     this.actor = actor;
+    this.sheet = sheet;
   }
 
   // ========================================
   // Properties
   // ========================================
   public actor: NotTheEndActor;
+  public sheet: NotTheEndActorSheet;
   // public roll: CowboyBebopRoll | undefined;
 
   // Define the template to use for this sheet
@@ -81,17 +89,18 @@ export default class NotTheEndActorRollDialog extends Dialog {
       .map(
         (el) =>
           ({
-            good: el.dataset.good ?? 0,
-            bad: el.dataset.bad ?? 0,
+            good: parseInt(el.dataset.good ?? "") ?? 0,
+            bad: parseInt(el.dataset.bad ?? "") ?? 0,
             type: el.dataset.type ?? "",
-            id: el.dataset.id ?? 0,
+            id: parseInt(el.dataset.id ?? "") ?? 0,
           } as TraitDto)
       );
 
     await this.actor.rollTalent(
       nbDraw,
       isNaN(difficulty) ? 0 : difficulty,
-      traits
+      traits,
+      this.sheet
     );
   }
 

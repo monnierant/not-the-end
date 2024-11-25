@@ -19,6 +19,16 @@
               data-value="0"
               data-type="archetyp"
             >
+              <input
+                type="hidden"
+                name="system.archetyp.0.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.archetyp.0.bad"
+                value="{{ trait.bad }}"
+              />
               {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
             </div>
           </div>
@@ -47,6 +57,16 @@
               data-value="{{ @index }}"
               data-type="quality"
             >
+              <input
+                type="hidden"
+                name="system.quality.{{ @index }}.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.quality.{{ @index }}.bad"
+                value="{{ trait.bad }}"
+              />
               {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>
@@ -76,6 +96,16 @@
               data-value="{{ @index }}"
               data-type="ability"
             >
+              <input
+                type="hidden"
+                name="system.ability.{{ @index }}.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.ability.{{ @index }}.bad"
+                value="{{ trait.bad }}"
+              />
               {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>

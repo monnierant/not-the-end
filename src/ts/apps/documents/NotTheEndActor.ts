@@ -1,9 +1,10 @@
 import { NotTheEndActorSystem } from "../schemas/NotTheEndActorSchema";
 
 import NotTheEndActorRollDialog from "../dialogs/NotTheEndRollDialog";
-import { moduleId } from "../../constants";
 import { StatHelpers } from "../helpers/StatHelpers";
 import { TraitDto } from "../schemas/commonSchema";
+import { moduleId, moduleIdCore } from "../../constants";
+import NotTheEndActorSheet from "../sheets/NotTheEndActorSheet";
 
 export default class NotTheEndActor extends Actor {
   public constructor(data: any, context: any) {
@@ -18,15 +19,16 @@ export default class NotTheEndActor extends Actor {
     return (this.system as any as NotTheEndActorSystem).ability[id];
   }
 
-  public async rollDialog() {
-    const dialog = new NotTheEndActorRollDialog(this);
+  public async rollDialog(sheet: NotTheEndActorSheet) {
+    const dialog = new NotTheEndActorRollDialog(this, sheet);
     dialog.render(true);
   }
 
   public async rollTalent(
     nbDraw: number,
     difficulty: number,
-    traits: TraitDto[]
+    traits: TraitDto[],
+    sheet: NotTheEndActorSheet
   ) {
     const good =
       traits.reduce((sum: number, trait: TraitDto) => sum + trait.good, 0) +
@@ -36,16 +38,30 @@ export default class NotTheEndActor extends Actor {
       difficulty;
     const results = await this.drawToken(good, bad, nbDraw);
 
+    for (const trait of traits) {
+      await this.updateClear(trait.type, trait.id);
+    }
+
+    sheet?.render();
+
     const content = await renderTemplate(
       `systems/${moduleId}/templates/chat/roll.hbs`,
       {
-        actor: this,
+        moduleId: moduleId,
         results: results,
         resultsJson: results.join(","),
-        good: good - (results.filter((r) => r).length - 1),
-        bad: bad - (results.filter((r) => !r).length - 1),
+        good: good - results.filter((r) => r).length,
+        bad: bad - results.filter((r) => !r).length,
         traits: traits,
         nbDraw: nbDraw,
+        bag: {
+          show:
+            game.settings?.get(moduleIdCore, "showbag") ||
+            (game as Game).user?.isGM,
+          good: good,
+          bad: bad,
+          confused: false,
+        },
       }
     );
 
@@ -69,9 +85,18 @@ export default class NotTheEndActor extends Actor {
       `systems/${moduleId}/templates/chat/risk.hbs`,
       {
         actor: this,
+        moduleId: moduleId,
         results: newResults,
-        good: good - (results.filter((r) => r).length - 1),
-        bad: bad - (results.filter((r) => !r).length - 1),
+        good: good - results.filter((r) => r).length,
+        bad: bad - results.filter((r) => !r).length,
+        bag: {
+          show:
+            game.settings?.get(moduleIdCore, "showbag") ||
+            (game as Game).user?.isGM,
+          good: good,
+          bad: bad,
+          confused: false,
+        },
       }
     );
 
@@ -164,7 +189,7 @@ export default class NotTheEndActor extends Actor {
       case "ability":
         await this.update({
           system: {
-            ability: syst.quality.map((q, i) =>
+            ability: syst.ability.map((q, i) =>
               i === editValue ? { ...q, good: Math.max(0, q.good + value) } : q
             ),
           },
@@ -202,7 +227,7 @@ export default class NotTheEndActor extends Actor {
       case "ability":
         await this.update({
           system: {
-            ability: syst.quality.map((q, i) =>
+            ability: syst.ability.map((q, i) =>
               i === editValue ? { ...q, bad: Math.max(0, q.bad + value) } : q
             ),
           },
@@ -235,7 +260,7 @@ export default class NotTheEndActor extends Actor {
       case "ability":
         await this.update({
           system: {
-            ability: syst.quality.map((q, i) =>
+            ability: syst.ability.map((q, i) =>
               i === editValue ? { ...q, bad: 0, good: 0 } : q
             ),
           },

@@ -1,5 +1,5 @@
 <div class="dice-roll">
-  {{ log ..}}
+  {{ log bag}}
   <div class="dice-result">
     <div class="nte-dice-tooltip dice-tooltip expanded" style="display: block">
       <section class="tooltip-part">
@@ -7,11 +7,11 @@
           <header class="part-header flexrow">
             <span class="part-formula">{{ result.formula }} </span>
 
-            {{!--
-            <span class="part-total"
-              >{{ talent.name }} : {{ talent.value }} + {{ difficulty }}
+            {{#if bag.show}}
+            <span class="part-total">
+              {{> (partial moduleId "piles") good=bag.good bad=bag.bad confused=bag.confused }}
             </span>
-            --}}
+            {{/if}}
           </header>
           <h4 class="dice-total">
             <div class="nte-pile">

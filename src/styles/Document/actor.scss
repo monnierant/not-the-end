@@ -32,12 +32,33 @@
     input[type="number"] {
       text-align: center;
     }
-  }
 
-  .sheet-header .nte-header-section {
     @include flex;
     flex-direction: row;
     width: 100%;
+    align-items: flex-end !important;
+    .nte-header-seconde-section {
+      flex: unset;
+      width: 14rem;
+      @include flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .nte-actor-roll {
+        width: 100%;
+      }
+    }
+  }
+  .nte-actor-controles {
+    @include flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    button {
+      width: 4rem;
+    }
+    div {
+      white-space: nowrap;
+    }
   }
 
   .nte-talents {
@@ -88,14 +109,5 @@
 
   .hexagon.active {
     --hex-color: #1e9b8e;
-  }
-
-  .nte-actor-controles {
-    @include flex;
-    flex-direction: row;
-    gap: 0.1rem;
-    div {
-      white-space: nowrap;
-    }
   }
 }

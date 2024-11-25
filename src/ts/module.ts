@@ -3,6 +3,7 @@
 import "../styles/style.scss";
 
 import NotTheEndActorSheet from "./apps/sheets/NotTheEndActorSheet";
+import { setupSettings } from "./settings";
 
 import { moduleId } from "./constants";
 import { range } from "./handlebarsHelpers/range";
@@ -19,6 +20,10 @@ import NteRollsRegister from "./apps/rolls/NteRollsRegister";
 declare global {
   interface DocumentClassConfig {
     Actor: NotTheEndActor;
+  }
+
+  interface SettingConfig {
+    "nte.showbag": boolean;
   }
 
   // interface DataModelConfig {
@@ -63,6 +68,7 @@ Hooks.once("init", () => {
   Actors.registerSheet(moduleId, NotTheEndActorSheet, { makeDefault: true });
 
   preloadTemplates();
+  setupSettings();
 });
 
 Hooks.on(

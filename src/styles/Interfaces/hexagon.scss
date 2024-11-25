@@ -4,6 +4,8 @@
 .nte-hexagon-section {
   --hex-color: #64c7cc;
   --hex-gap: 5;
+  --hex-offset-top: 50;
+  --hex-offset-bottom: 50;
   --hexagon-scale: 1;
   --hex-size-height-base: 34;
   --hex-size-width-base: 49;
@@ -33,8 +35,17 @@
   --hex-size: calc(var(--hex-size-height) + 2 * var(--hex-size-height-ext));
   --hex-corrector-amount: calc(var(--hex-size-width-ext) - var(--hex-gap) / 2);
   --hex-corrector: 0;
-  width: calc((5 * var(--hex-size) + 6 * var(--hex-gap)) * 1px + 2px);
-  height: calc((5 * var(--hex-size) + 6 * var(--hex-gap)) * 1px);
+  --hex-container-width: calc(
+    (5 * var(--hex-size) + 6 * var(--hex-gap)) * 1px + 2px
+  );
+  --hex-container-height: calc(
+    (
+        5 * var(--hex-size) + 6 * var(--hex-gap) - var(--hex-offset-top) -
+          var(--hex-offset-bottom)
+      ) * 1px
+  );
+  width: var(--hex-container-width);
+  height: var(--hex-container-height);
 }
 
 .hexagon-placement-init {
@@ -42,7 +53,13 @@
 
   left: calc(50% - calc(var(--hex-size) / 2 * 1px));
   top: calc(
-    50% + (calc(var(--hex-size-height) + var(--hex-size-height-ext)) * 1px)
+    50% +
+      (
+        calc(
+            var(--hex-size-height) + var(--hex-size-height-ext) -
+              var(--hex-offset-top)
+          ) * 1px
+      )
   );
 }
 
@@ -60,7 +77,12 @@
   left: calc(50% + var(--x) * 1px - calc(var(--hex-size) / 2 * 1px));
   top: calc(
     50% + var(--y) * 1px +
-      (calc(var(--hex-size-height) + var(--hex-size-height-ext)) * 1px)
+      (
+        calc(
+            var(--hex-size-height) + var(--hex-size-height-ext) -
+              var(--hex-offset-top)
+          ) * 1px
+      )
   );
 }
 
