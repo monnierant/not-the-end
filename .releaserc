@@ -10,7 +10,7 @@
       "prerelease": true
     }
   ],
-  "repositoryUrl": "https://github.com/monnierant/mySyst",
+  "repositoryUrl": "https://github.com/monnierant/notTheEnd",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/github"

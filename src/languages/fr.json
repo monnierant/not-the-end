@@ -1,18 +1,27 @@
 {
-  "MYSYST": {
+  "NTE": {
     "Global": {
-      "difficulty": "Difficulté"
+      "difficulty": "Difficulté",
+      "draw": "Piocher"
     },
     "Dialog": {
       "difficulty": {
+        "veryeasy": "Très facile",
         "easy": "Facile",
-        "medium": "Moyen",
+        "normal": "Moyen",
         "hard": "Difficile",
-        "veryhard": "Très Difficile",
-        "impossible": "Impossible"
+        "veryhard": "Très difficile",
+        "impossible": "Presque impossible"
       }
     },
+    "Settings": {
+      "showbag": "Afficher le contenu du sac aux joueurs"
+    },
     "Actor": {
+      "risk": "Risque",
+      "archetyp": "Archétype",
+      "quality": "Qualité",
+      "ability": "Capacité",
       "mana": "Mana",
       "health": "Santé",
       "note": "Note",

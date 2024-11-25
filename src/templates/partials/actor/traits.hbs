@@ -1,0 +1,117 @@
+<div class="nte-traits">
+  {{log edit}}
+  <section class="nte-hexagon-section">
+    <div class="hexagon-container">
+      <div class="hexagon-placement-init">
+        <div
+          class="hexagon {{ ternary (and (eq edit.type 'archetyp') (eq edit.value 0)) 'active' '' }}"
+        >
+          <div class="hexagon-content">
+            <textarea
+              name="system.archetyp.name"
+              placeholder="{{localize 'NTE.Actor.archetyp'}}"
+              >{{ actor.system.archetyp.name }}</textarea
+            >
+          </div>
+          <div class="hexagon-bottom">
+            <div
+              class="hexagon-bottom-value"
+              data-value="0"
+              data-type="archetyp"
+            >
+              <input
+                type="hidden"
+                name="system.archetyp.0.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.archetyp.0.bad"
+                value="{{ trait.bad }}"
+              />
+              {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{#each actor.system.quality as |trait index|}}
+      <div
+        class="hexagon-placement"
+        style="--row: 1; --index: {{ @index }}"
+        data-row="1"
+        data-index="0"
+      >
+        <div
+          class="hexagon {{ ternary (and (eq ../edit.type 'quality') (eq ../edit.value @index)) 'active' '' }}"
+        >
+          <div class="hexagon-content">
+            <textarea
+              name="system.quality.{{ @index }}.name"
+              placeholder="{{localize 'NTE.Actor.quality'}}"
+              >{{ trait.name }}</textarea
+            >
+          </div>
+          <div class="hexagon-bottom">
+            <div
+              class="hexagon-bottom-value"
+              data-value="{{ @index }}"
+              data-type="quality"
+            >
+              <input
+                type="hidden"
+                name="system.quality.{{ @index }}.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.quality.{{ @index }}.bad"
+                value="{{ trait.bad }}"
+              />
+              {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+      {{#each actor.system.ability as |trait index|}}
+      <div
+        class="hexagon-placement"
+        style="--row: 2; --index: {{ @index }}; --hex-corrector: {{ mod @index 2 }}"
+        data-row="1"
+        data-index="0"
+      >
+        <div
+          class="hexagon {{ ternary (and (eq ../edit.type 'ability') (eq ../edit.value @index)) 'active' '' }}"
+        >
+          <div class="hexagon-content">
+            <textarea
+              name="system.ability.{{ @index }}.name"
+              placeholder="{{localize 'NTE.Actor.ability'}}"
+              >{{ trait.name }}</textarea
+            >
+          </div>
+          <div class="hexagon-bottom">
+            <div
+              class="hexagon-bottom-value"
+              data-value="{{ @index }}"
+              data-type="ability"
+            >
+              <input
+                type="hidden"
+                name="system.ability.{{ @index }}.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.ability.{{ @index }}.bad"
+                value="{{ trait.bad }}"
+              />
+              {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+</div>

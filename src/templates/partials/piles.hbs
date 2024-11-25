@@ -1,0 +1,14 @@
+<div class="nte-pile">
+  {{#unless (lt good 0)}}
+  <div>
+    {{ good }}
+    <i class="good fa-solid fa-circle-dot"></i>
+  </div>
+  {{/unless}}
+  {{#unless (lt bad 0)}}
+  <div>
+    <i class="bad fa-solid fa-circle"></i>
+    {{ bad }}
+  </div>
+  {{/unless}}
+</div>

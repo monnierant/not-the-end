@@ -9,15 +9,15 @@
   display: none;
 }
 
-.mysyst-vital-modificator {
+.nte-vital-modificator {
   width: 2.5rem !important;
 }
 
-.mysyst-separator {
+.nte-separator {
   width: 0.5rem;
 }
 
-.mysyst-health-update {
+.nte-health-update {
   margin: 0 0.1rem;
 }
 
@@ -32,15 +32,36 @@
     input[type="number"] {
       text-align: center;
     }
-  }
 
-  .sheet-header .mysyst-header-section {
     @include flex;
     flex-direction: row;
     width: 100%;
+    align-items: flex-end !important;
+    .nte-header-seconde-section {
+      flex: unset;
+      width: 14rem;
+      @include flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      .nte-actor-roll {
+        width: 100%;
+      }
+    }
+  }
+  .nte-actor-controles {
+    @include flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.1rem;
+    button {
+      width: 4rem;
+    }
+    div {
+      white-space: nowrap;
+    }
   }
 
-  .mysyst-talents {
+  .nte-talents {
     @include flex;
     flex-direction: row;
     width: 100%;
@@ -51,7 +72,7 @@
     background-color: #f0f0f0;
   }
 
-  .mysyst-talent {
+  .nte-talent {
     @include flex;
     flex-direction: column;
     gap: 0.1em;
@@ -59,5 +80,34 @@
     input {
       text-align: center;
     }
+  }
+
+  .nte-traits {
+    .nte-hexagon-section {
+      --hex-color: #f0f0f0;
+      --hexagon-scale: 1.7;
+      textarea {
+        text-align: center;
+      }
+    }
+  }
+
+  .nte-actor-edit.active {
+    background-color: #1e9b8e;
+  }
+
+  .hexagon-bottom-value {
+    @include flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    &:hover {
+      cursor: pointer;
+      background-color: #1e9b8e; // #6a6a6aa8;
+    }
+  }
+
+  .hexagon.active {
+    --hex-color: #1e9b8e;
   }
 }
