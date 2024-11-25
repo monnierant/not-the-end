@@ -10,7 +10,7 @@
       "prerelease": true
     }
   ],
-  "repositoryUrl": "https://github.com/monnierant/notTheEnd",
+  "repositoryUrl": "https://github.com/monnierant/not-the-end",
   "plugins": [
     "@semantic-release/commit-analyzer",
     "@semantic-release/github"
