@@ -4,6 +4,7 @@ export const defaultLenght = {
   talent: 5,
   quality: 6,
   ability: 12,
+  missfortune: 4,
 };
 
 export const difficultyLevels = [

@@ -41,6 +41,15 @@
         title="{{localize 'NTE.Actor.roll'}}"
       >
         <i class="fas fa-dice"></i>
+        {{localize 'NTE.Actor.roll'}}
+      </button>
+      <button
+        class="nte-actor-bag-button"
+        data-action="bag"
+        title="{{localize (ternary bag 'NTE.Actor.traits' 'NTE.Actor.bag') }}"
+      >
+        <i class="fas {{ternary bag 'fa-circle-user' 'fa-bag-shopping' }}"></i>
+        {{localize (ternary bag 'NTE.Actor.traits' 'NTE.Actor.bag') }}
       </button>
     </div>
     <input

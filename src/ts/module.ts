@@ -16,6 +16,7 @@ import MyNpcRoleActorDataModel from "./apps/datamodels/NotTheEndNpcActorDataMode
 import NotTheEndActor from "./apps/documents/NotTheEndActor";
 import { mod } from "./handlebarsHelpers/mod";
 import NteRollsRegister from "./apps/rolls/NteRollsRegister";
+import { add } from "./handlebarsHelpers/add";
 
 declare global {
   interface DocumentClassConfig {
@@ -38,6 +39,7 @@ async function preloadTemplates(): Promise<any> {
   const templatePaths = [
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
     `systems/${moduleId}/templates/partials/actor/traits.hbs`,
+    `systems/${moduleId}/templates/partials/actor/bag.hbs`,
     `systems/${moduleId}/templates/partials/hexagon.hbs`,
     `systems/${moduleId}/templates/partials/piles.hbs`,
   ];
@@ -55,6 +57,7 @@ Hooks.once("init", () => {
   Handlebars.registerHelper("concat", concat);
   Handlebars.registerHelper("ternary", ternary);
   Handlebars.registerHelper("mod", mod);
+  Handlebars.registerHelper("add", add);
 
   Handlebars.registerHelper("divide", function (a: number, b: number) {
     return a / b;
