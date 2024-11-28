@@ -26,6 +26,7 @@
           </h4>
         </div>
       </section>
+      {{ log actor }}
       {{#if (lt nbDraw 5)}}
       <section class="nte-roll-actions">
         <button
@@ -35,6 +36,7 @@
           data-good="{{ good }}"
           data-bad="{{ bad }}"
           data-results="{{ resultsJson }}"
+          data-confused="{{ bag.confused }}"
         >
           <i class="fa-solid fa-sack-dollar"></i>
           {{localize "NTE.Actor.risk"}}

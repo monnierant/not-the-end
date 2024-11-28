@@ -21,9 +21,15 @@
   margin: 0 0.1rem;
 }
 
+.nte-actor-roll {
+  @include flex;
+  flex-direction: row;
+  gap: 0.5rem;
+}
+
 .actor-sheet {
   img {
-    height: 175px !important;
+    height: 150px !important;
     width: auto !important;
   }
 
@@ -61,7 +67,8 @@
     }
   }
 
-  .nte-talents {
+  .nte-talents,
+  .nte-bag {
     @include flex;
     flex-direction: row;
     width: 100%;
@@ -70,6 +77,7 @@
     border: 1px solid #000;
     border-radius: 5px;
     background-color: #f0f0f0;
+    gap: 0.5em;
   }
 
   .nte-talent {
@@ -109,5 +117,13 @@
 
   .hexagon.active {
     --hex-color: #1e9b8e;
+  }
+
+  .hexagon-container-secondary {
+    textarea {
+      border-color: var(--hex-color);
+      background-color: var(--hex-color);
+      color: #000;
+    }
   }
 }

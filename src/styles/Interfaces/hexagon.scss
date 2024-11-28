@@ -31,7 +31,10 @@
   align-items: center;
 }
 
-.hexagon-container {
+.hexagon-container,
+.hexagon-container-missfortune,
+.hexagon-placement-adrenaline,
+.hexagon-placement-confusion {
   --hex-size: calc(var(--hex-size-height) + 2 * var(--hex-size-height-ext));
   --hex-corrector-amount: calc(var(--hex-size-width-ext) - var(--hex-gap) / 2);
   --hex-corrector: 0;
@@ -44,6 +47,9 @@
           var(--hex-offset-bottom)
       ) * 1px
   );
+}
+
+.hexagon-container {
   width: var(--hex-container-width);
   height: var(--hex-container-height);
 }
@@ -51,9 +57,9 @@
 .hexagon-placement-init {
   position: absolute;
 
-  left: calc(50% - calc(var(--hex-size) / 2 * 1px));
+  left: calc(310px - calc(var(--hex-size) / 2 * 1px));
   top: calc(
-    50% +
+    350px +
       (
         calc(
             var(--hex-size-height) + var(--hex-size-height-ext) -
@@ -74,9 +80,59 @@
     var(--row) * (var(--hex-size) + var(--hex-gap) - var(--correct)) *
       sin(var(--index) * 360deg / (6 * var(--row)) + 90deg)
   );
-  left: calc(50% + var(--x) * 1px - calc(var(--hex-size) / 2 * 1px));
+  left: calc((310 + var(--x)) * 1px - calc(var(--hex-size) / 2 * 1px));
   top: calc(
-    50% + var(--y) * 1px +
+    (350 + var(--y)) * 1px +
+      (
+        calc(
+            var(--hex-size-height) + var(--hex-size-height-ext) -
+              var(--hex-offset-top)
+          ) * 1px
+      )
+  );
+}
+
+.hexagon-placement-missfortune {
+  position: absolute;
+  --correct: calc(var(--hex-corrector) * var(--hex-corrector-amount));
+  --x: calc(
+    (var(--hex-size-width) + var(--hex-gap) * 2 + var(--hex-size-width-ext) * 2) *
+      var(--index)
+  );
+  --y: 0; //calc(var(--hex-corrector) * (var(--hex-gap) + var(--hex-size-height)));
+  left: calc((var(--x) + 120) * 1px - calc(var(--hex-size) / 2 * 1px));
+  top: calc(
+    (680 - var(--y)) * 1px +
+      (
+        calc(
+            var(--hex-size-height) + var(--hex-size-height-ext) -
+              var(--hex-offset-top)
+          ) * 1px
+      )
+  );
+}
+
+.hexagon-placement-adrenaline {
+  position: absolute;
+
+  left: calc(80px - calc(var(--hex-size) / 2 * 1px));
+  top: calc(
+    575px +
+      (
+        calc(
+            var(--hex-size-height) + var(--hex-size-height-ext) -
+              var(--hex-offset-top)
+          ) * 1px
+      )
+  );
+}
+
+.hexagon-placement-confusion {
+  position: absolute;
+
+  left: calc(550px - calc(var(--hex-size) / 2 * 1px));
+  top: calc(
+    575px +
       (
         calc(
             var(--hex-size-height) + var(--hex-size-height-ext) -
@@ -87,18 +143,23 @@
 }
 
 .hexagon {
+  position: relative;
   height: calc((var(--hex-size-height) + var(--hex-size-height-ext) / 2) * 1px);
   width: calc(var(--hex-size-width) * 1px);
-  position: relative;
+
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: flex-start;
+  textarea {
+    font-size: 0.7rem;
+  }
 }
 
 .hexagon-content {
   background-color: var(--hex-color);
   height: calc((var(--hex-size-height) * 1px));
+  width: calc((var(--hex-size-width) * 1px));
 }
 
 .hexagon:before {

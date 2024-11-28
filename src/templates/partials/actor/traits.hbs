@@ -20,13 +20,13 @@
             >
               <input
                 type="hidden"
-                name="system.archetyp.0.good"
-                value="{{ trait.good }}"
+                name="system.archetyp.good"
+                value="{{ actor.system.archetyp.good }}"
               />
               <input
                 type="hidden"
-                name="system.archetyp.0.bad"
-                value="{{ trait.bad }}"
+                name="system.archetyp.bad"
+                value="{{ actor.system.archetyp.bad }}"
               />
               {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
             </div>
@@ -106,6 +106,109 @@
                 value="{{ trait.bad }}"
               />
               {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+            </div>
+          </div>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </section>
+
+  <section class="nte-hexagon-section">
+    <div class="hexagon-container-secondary">
+      <div class="hexagon-placement-confusion">
+        <div
+          class="hexagon {{ ternary (and (eq edit.type 'confusion') (eq edit.value 0)) 'active' '' }}"
+        >
+          <div class="hexagon-content">
+            <textarea disabled>{{localize 'NTE.Actor.confusion'}}</textarea>
+          </div>
+          <div class="hexagon-bottom">
+            <div
+              class="hexagon-bottom-value"
+              data-value="0"
+              data-type="confusion"
+            >
+              <input
+                type="hidden"
+                name="system.confusion.good"
+                value="{{ actor.system.confusion.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.confusion.bad"
+                value="{{ actor.system.confusion.bad }}"
+              />
+              {{> (partial moduleId "piles") good=-1 bad=actor.system.confusion.bad }}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hexagon-placement-adrenaline">
+        <div
+          class="hexagon {{ ternary (and (eq edit.type 'adrenaline') (eq edit.value 0)) 'active' '' }}"
+        >
+          <div class="hexagon-content">
+            <textarea disabled>{{localize 'NTE.Actor.adrenaline'}}</textarea>
+          </div>
+          <div class="hexagon-bottom">
+            <div
+              class="hexagon-bottom-value"
+              data-value="0"
+              data-type="adrenaline"
+            >
+              <input
+                type="hidden"
+                name="system.adrenaline.good"
+                value="{{ actor.system.adrenaline.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.adrenaline.bad"
+                value="{{ actor.system.adrenaline.bad }}"
+              />
+              {{> (partial moduleId "piles") good=-1 bad=actor.system.adrenaline.bad }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="hexagon-container-missfortune">
+      {{#each actor.system.missfortune as |trait index|}}
+      <div
+        class="hexagon-placement-missfortune"
+        style="--index: {{ @index }}; --hex-corrector: {{ mod @index 2 }}"
+        data-row="1"
+        data-index="0"
+      >
+        <div
+          class="hexagon {{ ternary (and (eq ../edit.type 'missfortune') (eq ../edit.value @index)) 'active' '' }}"
+        >
+          <div class="hexagon-content">
+            <textarea
+              name="system.missfortune.{{ @index }}.name"
+              placeholder="{{localize 'NTE.Actor.missfortune'}}"
+              >{{ trait.name }}</textarea
+            >
+          </div>
+          <div class="hexagon-bottom">
+            <div
+              class="hexagon-bottom-value"
+              data-value="{{ @index }}"
+              data-type="missfortune"
+            >
+              <input
+                type="hidden"
+                name="system.missfortune.{{ @index }}.good"
+                value="{{ trait.good }}"
+              />
+              <input
+                type="hidden"
+                name="system.missfortune.{{ @index }}.bad"
+                value="{{ trait.bad }}"
+              />
+              {{> (partial ../moduleId "piles") good=-1 bad=trait.bad }}
             </div>
           </div>
         </div>

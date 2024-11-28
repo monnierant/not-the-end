@@ -16,9 +16,11 @@
       <label for="nte-dialog-nb-draw">{{ localize 'NTE.Global.draw' }}</label>
       <select id="nte-dialog-nb-draw" name="draw">
         {{#each drawLevels as |draw|}}
+        {{#unless (and (lt draw 4) ../adrenaline)}}
         <option value="{{ draw }}">
           {{ draw }}
         </option>
+        {{/unless}}
         {{/each}}
       </select>
     </div>
@@ -67,6 +69,22 @@
         {{ trait.name }}
       </div>
       {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+    </div>
+    {{/if}}
+    {{/each}}
+    {{#each actor.system.missfortune as |trait index|}}
+    {{#if trait.name}}
+    <div
+      class="nte-dialog-trait"
+      data-good="{{ trait.good }}"
+      data-bad="{{ trait.bad }}"
+      data-id="{{ @index }}"
+      data-type="missfortune"
+    >
+      <div class="nte-dialog-trait-name">
+        {{ trait.name }}
+      </div>
+      {{> (partial ../moduleId "piles") good=-1 bad=trait.bad }}
     </div>
     {{/if}}
     {{/each}}

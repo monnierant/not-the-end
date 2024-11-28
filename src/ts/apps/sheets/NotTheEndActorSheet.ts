@@ -4,12 +4,13 @@ import { StatHelpers } from "../helpers/StatHelpers";
 
 export default class NotTheEndActorSheet extends ActorSheet {
   constructor(object: any, options = {}) {
-    super(object, { ...options, width: 610, height: 750 });
+    super(object, { ...options, width: 610, height: 800 });
     console.log("this.actor.type", this.actor.type);
   }
 
   private editType: string = "";
   private editValue: number = 0;
+  private bag: boolean = false;
 
   // Define the template to use for this sheet
   override get template() {
@@ -27,6 +28,8 @@ export default class NotTheEndActorSheet extends ActorSheet {
         this.actor as NotTheEndActor
       );
 
+      data.bag = this.bag;
+
       data.edit = {
         type: this.editType,
         value: this.editValue,
@@ -43,6 +46,9 @@ export default class NotTheEndActorSheet extends ActorSheet {
     html
       .find(".nte-actor-roll-button")
       .on("click", this._onRollDice.bind(this));
+    html
+      .find(".nte-actor-bag-button")
+      .on("click", this._onToogleBag.bind(this));
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
@@ -123,6 +129,12 @@ export default class NotTheEndActorSheet extends ActorSheet {
     this.editValue = parseInt(event.currentTarget.dataset.value) ?? 0;
     this.editType = event.currentTarget.dataset.type ?? "";
 
+    this.render();
+  }
+
+  private async _onToogleBag(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    this.bag = !this.bag;
     this.render();
   }
 }

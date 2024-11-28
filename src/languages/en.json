@@ -22,10 +22,16 @@
       "archetyp": "Archetype",
       "quality": "Quality",
       "ability": "Ability",
+      "missfortune": "Missfortune",
+      "confusion": "Confusion",
+      "adrenaline": "Adrenaline",
       "mana": "Mana",
       "health": "Health",
       "note": "Note",
       "talents": "Talents",
+      "roll": "Roll",
+      "bag": "Bag",
+      "traits": "Traits",
       "name": "Name"
     }
   }

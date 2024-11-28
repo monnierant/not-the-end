@@ -1,4 +1,8 @@
 <div class="nte-pile">
+  {{#if confused}}
+  {{ add good bad }}
+  <i class="confused fa-solid fa-circle-half-stroke"></i>
+  {{else}}
   {{#unless (lt good 0)}}
   <div>
     {{ good }}
@@ -11,4 +15,5 @@
     {{ bad }}
   </div>
   {{/unless}}
+  {{/if}}
 </div>

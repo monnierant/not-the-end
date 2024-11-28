@@ -12,12 +12,13 @@ export default class NteRollsRegister {
     const good = parseInt(event.currentTarget.dataset.good) ?? 0;
     const bad = parseInt(event.currentTarget.dataset.bad) ?? 0;
     const draw = parseInt(event.currentTarget.dataset.draw) ?? 0;
+    const confused = event.currentTarget.dataset.confused === "true";
     const results = (event.currentTarget.dataset.results ?? "")
       .split(",")
       .map((r: string) => r === "true");
 
     if (actor) {
-      await actor.rollRisk(good, bad, draw, results);
+      await actor.rollRisk(good, bad, draw, results, confused);
     }
   }
 }

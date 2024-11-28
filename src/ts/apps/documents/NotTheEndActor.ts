@@ -30,23 +30,41 @@ export default class NotTheEndActor extends Actor {
     traits: TraitDto[],
     sheet: NotTheEndActorSheet
   ) {
-    const good =
-      traits.reduce((sum: number, trait: TraitDto) => sum + trait.good, 0) +
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
+    let good =
+      traits
+        .filter((t) => t.type !== "missfortune")
+        .reduce((sum: number, trait: TraitDto) => sum + trait.good, 0) +
       traits.length;
-    const bad =
+    let bad =
       traits.reduce((sum: number, trait: TraitDto) => sum + trait.bad, 0) +
       difficulty;
     const results = await this.drawToken(good, bad, nbDraw);
 
-    for (const trait of traits) {
-      await this.updateClear(trait.type, trait.id);
+    const confused = syst.confusion.bad > 0;
+
+    if (confused) {
+      const tmp = good + bad;
+      good = Math.random() * tmp;
+      bad = tmp - good;
     }
+
+    for (const trait of traits) {
+      if (["quality", "ability", "archetyp"].includes(trait.type)) {
+        await this.updateClear(trait.type, trait.id);
+      }
+    }
+
+    await this.updateClear("confusion", 0);
+    await this.updateClear("adrenaline", 0);
 
     sheet?.render();
 
     const content = await renderTemplate(
       `systems/${moduleId}/templates/chat/roll.hbs`,
       {
+        actor: this,
         moduleId: moduleId,
         results: results,
         resultsJson: results.join(","),
@@ -60,7 +78,7 @@ export default class NotTheEndActor extends Actor {
             (game as Game).user?.isGM,
           good: good,
           bad: bad,
-          confused: false,
+          confused: confused,
         },
       }
     );
@@ -71,11 +89,18 @@ export default class NotTheEndActor extends Actor {
     });
   }
 
+  public getAdrenaline() {
+    const syst: NotTheEndActorSystem = this
+      .system as any as NotTheEndActorSystem;
+    return syst.adrenaline.bad > 0;
+  }
+
   public async rollRisk(
     good: number,
     bad: number,
     draw: number,
-    results: boolean[]
+    results: boolean[],
+    confused: boolean = false
   ) {
     const newResults = results.concat(
       await this.drawToken(good, bad, 5 - draw)
@@ -87,15 +112,15 @@ export default class NotTheEndActor extends Actor {
         actor: this,
         moduleId: moduleId,
         results: newResults,
-        good: good - results.filter((r) => r).length,
-        bad: bad - results.filter((r) => !r).length,
+        good: good - newResults.filter((r) => r).length,
+        bad: bad - newResults.filter((r) => !r).length,
         bag: {
           show:
             game.settings?.get(moduleIdCore, "showbag") ||
             (game as Game).user?.isGM,
           good: good,
           bad: bad,
-          confused: false,
+          confused: confused,
         },
       }
     );
@@ -215,6 +240,26 @@ export default class NotTheEndActor extends Actor {
           },
         });
         break;
+      case "confusion":
+        await this.update({
+          system: {
+            confusion: {
+              ...syst.confusion,
+              bad: Math.clamp(syst.confusion.bad + value, 0, 1),
+            },
+          },
+        });
+        break;
+      case "adrenaline":
+        await this.update({
+          system: {
+            adrenaline: {
+              ...syst.adrenaline,
+              bad: Math.clamp(syst.adrenaline.bad + value, 0, 1),
+            },
+          },
+        });
+        break;
       case "quality":
         await this.update({
           system: {
@@ -228,6 +273,15 @@ export default class NotTheEndActor extends Actor {
         await this.update({
           system: {
             ability: syst.ability.map((q, i) =>
+              i === editValue ? { ...q, bad: Math.max(0, q.bad + value) } : q
+            ),
+          },
+        });
+        break;
+      case "missfortune":
+        await this.update({
+          system: {
+            missfortune: syst.missfortune.map((q, i) =>
               i === editValue ? { ...q, bad: Math.max(0, q.bad + value) } : q
             ),
           },
@@ -263,6 +317,29 @@ export default class NotTheEndActor extends Actor {
             ability: syst.ability.map((q, i) =>
               i === editValue ? { ...q, bad: 0, good: 0 } : q
             ),
+          },
+        });
+        break;
+      case "missfortune":
+        await this.update({
+          system: {
+            missfortune: syst.missfortune.map((q, i) =>
+              i === editValue ? { ...q, bad: 0, good: 0 } : q
+            ),
+          },
+        });
+        break;
+      case "confusion":
+        await this.update({
+          system: {
+            confusion: { ...syst.confusion, bad: 0, good: 0 },
+          },
+        });
+        break;
+      case "adrenaline":
+        await this.update({
+          system: {
+            adrenaline: { ...syst.adrenaline, bad: 0, good: 0 },
           },
         });
         break;

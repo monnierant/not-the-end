@@ -62,6 +62,7 @@ export default class NotTheEndActorRollDialog extends Dialog {
     data.difficultyLevels = difficultyLevels;
     data.moduleId = moduleId;
     data.drawLevels = drawLevels;
+    data.adrenaline = this.actor.getAdrenaline();
     return data;
   }
 
