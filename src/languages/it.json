@@ -1,0 +1,38 @@
+{
+  "NTE": {
+    "Global": {
+      "difficulty": "Difficoltà",
+      "draw": "Estrai"
+    },
+    "Dialog": {
+      "difficulty": {
+        "veryeasy": "Facilissima",
+        "easy": "Facile",
+        "normal": "Normale",
+        "hard": "Difficile",
+        "veryhard": "Difficilissima",
+        "impossible": "Quasi Impossibile"
+      }
+    },
+    "Settings": {
+      "showbag": "Mostra il contenuto del sacchetto ai giocatori"
+    },
+    "Actor": {
+      "risk": "Rischio",
+      "archetyp": "Archetipo",
+      "quality": "Qualità",
+      "ability": "Abilità",
+      "missfortune": "Sventura",
+      "confusion": "Confusione",
+      "adrenaline": "Adrenalina",
+      "mana": "Mana",
+      "health": "Salute",
+      "note": "Note",
+      "talents": "Talenti",
+      "roll": "Tira",
+      "bag": "Sacchetto",
+      "traits": "Tratti",
+      "name": "Nome"
+    }
+  }
+}
