@@ -14,6 +14,7 @@ export interface NotTheEndActorSystem {
   missfortune: Trait[];
   bag1: string;
   bag2: string;
+  risk: string;
 }
 
 export const notTheEndActorSchema = {
@@ -52,6 +53,7 @@ export const notTheEndActorSchema = {
 
   bag1: new fields.StringField({ initial: "" }),
   bag2: new fields.StringField({ initial: "" }),
+  risk: new fields.StringField({ initial: "" }),
 };
 
 export type NotTheEndActorSchema = typeof notTheEndActorSchema;

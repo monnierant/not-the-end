@@ -33,7 +33,7 @@
         <i class="fa-solid fa-door-open"></i>
       </button>
     </div>
-    {{/if}}
+    {{else}}
     <div class="nte-actor-roll">
       <button
         class="nte-actor-roll-button"
@@ -52,12 +52,20 @@
         {{localize (ternary bag 'NTE.Actor.traits' 'NTE.Actor.bag') }}
       </button>
     </div>
+    {{/if}}
     <input
       type="text"
       name="name"
       value="{{ actor.name }}"
       data-edit="name"
       placeholder="{{localize 'NTE.Actor.name'}}"
+    />
+    <input
+      type="text"
+      name="system.risk"
+      value="{{ actor.system.risk }}"
+      data-edit="system.risk"
+      placeholder="{{localize 'NTE.Actor.risk'}}"
     />
   </div>
 </header>
