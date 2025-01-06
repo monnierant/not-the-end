@@ -11,7 +11,11 @@
         "normal": "Moyen",
         "hard": "Difficile",
         "veryhard": "Très difficile",
-        "impossible": "Presque impossible"
+        "impossible": "Presque impossible",
+        "impossible2": "Impossible",
+        "impossible3": "Tellement Impossible",
+        "impossible4": "Quasiment Suicidaire",
+        "impossible5": "Suicidaire"
       }
     },
     "Settings": {

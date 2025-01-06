@@ -14,6 +14,10 @@ export const difficultyLevels = [
   { value: 4, label: "hard" },
   { value: 5, label: "veryhard" },
   { value: 6, label: "impossible" },
+  { value: 7, label: "impossible2" },
+  { value: 8, label: "impossible3" },
+  { value: 9, label: "impossible4" },
+  { value: 10, label: "impossible5" },
 ];
 
 export const drawLevels = [1, 2, 3, 4, 5];
