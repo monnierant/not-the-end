@@ -1,6 +1,6 @@
 # NotTheEnd - Foundry VTT System
 
-Not The End is an italian TTRPG published under Creative Commons BY-NC-SA 3.0
+Not The End is an italian TTRPG published under Creative Commons BY-NC-SA 3.0.
 
 ## Usage
 
