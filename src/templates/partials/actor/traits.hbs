@@ -9,7 +9,7 @@
             <textarea
               name="system.archetyp.name"
               placeholder="{{localize 'NTE.Actor.archetyp'}}"
-              >{{ actor.system.archetyp.name }}</textarea
+              >{{~actor.system.archetyp.name~}}</textarea
             >
           </div>
           <div class="hexagon-bottom">
@@ -47,7 +47,7 @@
             <textarea
               name="system.quality.{{ @index }}.name"
               placeholder="{{localize 'NTE.Actor.quality'}}"
-              >{{ trait.name }}</textarea
+              >{{~trait.name~}}</textarea
             >
           </div>
           <div class="hexagon-bottom">
@@ -86,7 +86,7 @@
             <textarea
               name="system.ability.{{ @index }}.name"
               placeholder="{{localize 'NTE.Actor.ability'}}"
-              >{{ trait.name }}</textarea
+              >{{~trait.name~}}</textarea
             >
           </div>
           <div class="hexagon-bottom">
@@ -121,7 +121,7 @@
           class="hexagon {{ ternary (and (eq edit.type 'confusion') (eq edit.value 0)) 'active' '' }}"
         >
           <div class="hexagon-content">
-            <textarea disabled>{{localize 'NTE.Actor.confusion'}}</textarea>
+            <textarea disabled>{{~localize 'NTE.Actor.confusion'~}}</textarea>
           </div>
           <div class="hexagon-bottom">
             <div
@@ -150,7 +150,7 @@
           class="hexagon {{ ternary (and (eq edit.type 'adrenaline') (eq edit.value 0)) 'active' '' }}"
         >
           <div class="hexagon-content">
-            <textarea disabled>{{localize 'NTE.Actor.adrenaline'}}</textarea>
+            <textarea disabled>{{~localize 'NTE.Actor.adrenaline'~}}</textarea>
           </div>
           <div class="hexagon-bottom">
             <div
@@ -189,7 +189,7 @@
             <textarea
               name="system.missfortune.{{ @index }}.name"
               placeholder="{{localize 'NTE.Actor.missfortune'}}"
-              >{{ trait.name }}</textarea
+              >{{~trait.name~}}</textarea
             >
           </div>
           <div class="hexagon-bottom">
