@@ -1,11 +1,11 @@
 {{log actor}}
 
 <form class="actor-sheet {{ cssClass }}" autocomplete="off">
-  {{> (partial moduleId "actor/header") moduleId=moduleId actor=actor edit=edit}}
+  {{~> (partial moduleId "actor/header") moduleId=moduleId actor=actor edit=edit}}
   <div class="{{ ternary bag 'hidden' ''}}">
-    {{> (partial moduleId "actor/traits") bag=bag moduleId=moduleId actor=actor edit=edit}}
+    {{~> (partial moduleId "actor/traits") bag=bag moduleId=moduleId actor=actor edit=edit}}
   </div>
   <div class="{{ ternary bag '' 'hidden'}}">
-    {{> (partial moduleId "actor/bag") bag=bag moduleId=moduleId actor=actor edit=edit}}
+    {{~> (partial moduleId "actor/bag") bag=bag moduleId=moduleId actor=actor edit=edit}}
   </div>
 </form>

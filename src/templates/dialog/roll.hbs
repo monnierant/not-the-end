@@ -37,7 +37,7 @@
       <div class="nte-dialog-trait-name">
         {{ actor.system.archetyp.name }}
       </div>
-      {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
+      {{~> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
     </div>
     {{/if}}
     {{#each actor.system.quality as |trait index|}}
@@ -52,7 +52,7 @@
       <div class="nte-dialog-trait-name">
         {{ trait.name }}
       </div>
-      {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+      {{~> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
     </div>
     {{/if}}
     {{/each}}
@@ -68,7 +68,7 @@
       <div class="nte-dialog-trait-name">
         {{ trait.name }}
       </div>
-      {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+      {{~> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
     </div>
     {{/if}}
     {{/each}}
@@ -84,7 +84,7 @@
       <div class="nte-dialog-trait-name">
         {{ trait.name }}
       </div>
-      {{> (partial ../moduleId "piles") good=-1 bad=trait.bad }}
+      {{~> (partial ../moduleId "piles") good=-1 bad=trait.bad }}
     </div>
     {{/if}}
     {{/each}}

@@ -1,11 +1,16 @@
 {{log actor}}
 
 <form class="actor-sheet {{ cssClass }}" autocomplete="off">
-  {{> (partial moduleId "actor/header.hbs") moduleId=moduleId actor=actor}}
-  <textarea
-    rows="10"
+  {{~> (partial moduleId "actor/header.hbs") moduleId=moduleId actor=actor}}
+
+  <prose-mirror
+    class="nte-bag-editor monni-text-editor"
     name="system.note"
-    placeholder="{{localize 'NTE.Actor.note'}}"
-    >{{~actor.system.note~}}</textarea
+    data-document-uuid="{{ actor.uuid }}"
+    value="{{ actor.system.note }}"
+    collaborate="true"
+    toggled="true"
+    compact="true"
+    >{{{actor.system.note}}}</prose-mirror
   >
 </form>

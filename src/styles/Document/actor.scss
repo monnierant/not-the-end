@@ -126,4 +126,24 @@
       color: #000;
     }
   }
+
+  .monni-text-editor {
+    width: 100%;
+    border: #000 1px solid;
+    border-radius: 5px;
+    padding: 0.5em;
+    background-color: #0000002c;
+  }
+
+  .nte-bag-editor {
+    height: 34rem;
+  }
+
+  .nte-trait-editor {
+    height: 3rem;
+  }
+
+  .editor-menu {
+    background-color: #ffffff68;
+  }
 }

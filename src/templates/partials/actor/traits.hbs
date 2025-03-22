@@ -28,7 +28,7 @@
                 name="system.archetyp.bad"
                 value="{{ actor.system.archetyp.bad }}"
               />
-              {{> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
+              {{~> (partial moduleId "piles") good=actor.system.archetyp.good bad=actor.system.archetyp.bad }}
             </div>
           </div>
         </div>
@@ -66,7 +66,7 @@
                 name="system.quality.{{ @index }}.bad"
                 value="{{ trait.bad }}"
               />
-              {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+              {{~> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>
         </div>
@@ -105,7 +105,7 @@
                 name="system.ability.{{ @index }}.bad"
                 value="{{ trait.bad }}"
               />
-              {{> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
+              {{~> (partial ../moduleId "piles") good=trait.good bad=trait.bad }}
             </div>
           </div>
         </div>
@@ -139,7 +139,7 @@
                 name="system.confusion.bad"
                 value="{{ actor.system.confusion.bad }}"
               />
-              {{> (partial moduleId "piles") good=-1 bad=actor.system.confusion.bad }}
+              {{~> (partial moduleId "piles") good=-1 bad=actor.system.confusion.bad }}
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@
                 name="system.adrenaline.bad"
                 value="{{ actor.system.adrenaline.bad }}"
               />
-              {{> (partial moduleId "piles") good=-1 bad=actor.system.adrenaline.bad }}
+              {{~> (partial moduleId "piles") good=-1 bad=actor.system.adrenaline.bad }}
             </div>
           </div>
         </div>
@@ -186,11 +186,7 @@
           class="hexagon {{ ternary (and (eq ../edit.type 'missfortune') (eq ../edit.value @index)) 'active' '' }}"
         >
           <div class="hexagon-content">
-            <textarea
-              name="system.missfortune.{{ @index }}.name"
-              placeholder="{{localize 'NTE.Actor.missfortune'}}"
-              >{{~trait.name~}}</textarea
-            >
+            <textarea name="system.missfortune.{{ @index }}.name" placeholder="{{localize 'NTE.Actor.missfortune'}}">{{~trait.name~}}</textarea>
           </div>
           <div class="hexagon-bottom">
             <div
@@ -208,7 +204,7 @@
                 name="system.missfortune.{{ @index }}.bad"
                 value="{{ trait.bad }}"
               />
-              {{> (partial ../moduleId "piles") good=-1 bad=trait.bad }}
+              {{~> (partial ../moduleId "piles") good=-1 bad=trait.bad }}
             </div>
           </div>
         </div>
