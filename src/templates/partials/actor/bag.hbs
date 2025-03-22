@@ -3,11 +3,25 @@
   {{!-- bags --}}
   {{!-----------------------------------------}}
   <div class="nte-bag">
-    <textarea
+    <prose-mirror
+      class="nte-bag-editor monni-text-editor"
       name="system.bag1"
-      rows="37"
-      data-tooltip="{{ localize 'NTE.Actor.bag' }}"
-      >{{~actor.system.bag1~}}</textarea
+      data-document-uuid="{{ actor.uuid }}"
+      value="{{ actor.system.bag1 }}"
+      collaborate="true"
+      toggled="true"
+      compact="true"
+      >{{{actor.system.bag1}}}</prose-mirror
+    >
+    <prose-mirror
+      class="nte-bag-editor monni-text-editor"
+      name="system.bag2"
+      data-document-uuid="{{ actor.uuid }}"
+      value="{{ actor.system.bag2 }}"
+      collaborate="true"
+      toggled="true"
+      compact="true"
+      >{{{actor.system.bag2}}}</prose-mirror
     >
     <textarea
       name="system.bag2"
