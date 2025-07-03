@@ -166,11 +166,11 @@
   content: "";
   position: absolute;
   height: 0;
-  width: calc((var(--hex-size-width) - 2 * var(--hex-size-width-mid)) * 1px);
+  width: calc(var(--hex-size-width)  * 1px);
   border-left: calc(var(--hex-size-width-mid) * 1px) solid transparent;
   border-right: calc(var(--hex-size-width-mid) * 1px) solid transparent;
   bottom: 100%;
-  right: 0;
+  // right: 0;
   border-bottom: calc(var(--hex-size-height-ext) * 1px) solid var(--hex-color);
 }
 
