@@ -1,7 +1,7 @@
 {
-  "name": "brigandyne",
+  "name": "notTheEnd",
   "version": "1.0.1",
-  "description": "A template project for FoundryVTT modules using Typescript",
+  "description": "Not The End Foundryvtt System",
   "license": "MIT",
   "private": true,
   "type": "module",
