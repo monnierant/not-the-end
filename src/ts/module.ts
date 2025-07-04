@@ -12,7 +12,7 @@ import { ternary } from "./handlebarsHelpers/ternary";
 import { partial } from "./handlebarsHelpers/partial";
 import { notTheEndActorSchema } from "./apps/schemas/NotTheEndActorSchema";
 import NotTheEndActorDataModel from "./apps/datamodels/NotTheEndActorDataModel";
-import MyNpcRoleActorDataModel from "./apps/datamodels/NotTheEndNpcActorDataModel";
+import NotTheEndNpcRoleActorDataModel from "./apps/datamodels/NotTheEndNpcActorDataModel";
 import NotTheEndActor from "./apps/documents/NotTheEndActor";
 import { mod } from "./handlebarsHelpers/mod";
 import NteRollsRegister from "./apps/rolls/NteRollsRegister";
@@ -20,19 +20,19 @@ import { add } from "./handlebarsHelpers/add";
 
 declare global {
   interface DocumentClassConfig {
-    Actor: NotTheEndActor;
+    Actor: typeof NotTheEndActor;
   }
 
   interface SettingConfig {
     "nte.showbag": boolean;
   }
 
-  // interface DataModelConfig {
-  //   Actor: {
-  //     someActorSubtype: SomeActorSubtypeDataModel;
-  //     anotherActorSubtype: AnotherActorSubtypeDataModel;
-  //   };
-  // }
+    interface DataModelConfig {
+    Actor: {
+      character: typeof NotTheEndActorDataModel;
+      npc: typeof NotTheEndNpcRoleActorDataModel;
+    };
+  }
 }
 
 async function preloadTemplates(): Promise<any> {
@@ -64,7 +64,7 @@ Hooks.once("init", () => {
   });
 
   CONFIG.Actor.dataModels.character = NotTheEndActorDataModel;
-  CONFIG.Actor.dataModels.npc = MyNpcRoleActorDataModel;
+  CONFIG.Actor.dataModels.npc = NotTheEndNpcRoleActorDataModel;
   CONFIG.Actor.documentClass = NotTheEndActor;
 
   Actors.unregisterSheet("core", ActorSheet);
@@ -76,7 +76,7 @@ Hooks.once("init", () => {
 
 Hooks.on(
   "renderChatMessage",
-  (app: Application, html: JQuery, data: any): void => {
+  (app, html, data): void => {
     if (app === undefined) {
       console.log("app is undefined");
     }
