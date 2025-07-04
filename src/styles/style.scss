@@ -1,9 +1,9 @@
-@import "./clean.scss";
-@import "./pile.scss";
+@use "clean.scss";
+@use "pile.scss";
 
-@import "./Interfaces/roll.scss";
-@import "./Interfaces/hexagon.scss";
-@import "./Interfaces/dialog.scss";
-@import "./Interfaces/hpmpbar.scss";
+@use "Interfaces/roll.scss";
+@use "Interfaces/hexagon.scss";
+@use "Interfaces/dialog.scss";
+@use "Interfaces/hpmpbar.scss";
 
-@import "./Document/actor.scss";
+@use "Document/actor.scss";

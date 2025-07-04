@@ -1,3 +1,5 @@
+import NotTheEndActor from "../documents/NotTheEndActor";
+
 export default class NteRollsRegister {
   public static async registerTriggers(html: JQuery<HTMLElement>) {
     console.log(html);
@@ -18,7 +20,7 @@ export default class NteRollsRegister {
       .map((r: string) => r === "true");
 
     if (actor) {
-      await actor.rollRisk(good, bad, draw, results, confused);
+      await (actor as NotTheEndActor).rollRisk(good, bad, draw, results, confused);
     }
   }
 }
