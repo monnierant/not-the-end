@@ -1,0 +1,118 @@
+<div class="nte-actor-profile-container">
+  <div class="nte-histo">
+    <div class="nte-histo-collumn-a">
+      <h3>{{ localize 'NTE.Actor.profile' }}</h3>
+      <section class="nte-profile-section">
+        <div class="nte-info">
+          <label>{{ localize 'NTE.Actor.profile' }}</label>
+          <input
+            name="system.profile"
+            type="text"
+            value="{{ actor.system.profile }}"
+          />
+        </div>
+        <div class="nte-info-collumn">
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.species' }}</label>
+            <input
+              name="system.species"
+              type="text"
+              value="{{ actor.system.species }}"
+            />
+          </div>
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.limit' }}</label>
+            <input
+              name="system.limit"
+              type="text"
+              value="{{ actor.system.limit }}"
+            />
+          </div>
+        </div>
+      </section>
+      {{!-- Appearance --}}
+      <h3>{{ localize 'NTE.Actor.appearance' }}</h3>
+      <section class="nte-appearance-section">
+        <div class="nte-appearance-minisection">
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.age' }}</label>
+            <input
+              name="system.age"
+              type="text"
+              value="{{ actor.system.age }}"
+            />
+          </div>
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.height' }}</label>
+            <input
+              name="system.height"
+              type="text"
+              value="{{ actor.system.height }}"
+            />
+          </div>
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.weight' }}</label>
+            <input
+              name="system.weight"
+              type="text"
+              value="{{ actor.system.weight }}"
+            />
+          </div>
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.eyes' }}</label>
+            <input
+              name="system.eyes"
+              type="text"
+              value="{{ actor.system.eyes }}"
+            />
+          </div>
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.hair' }}</label>
+            <input
+              name="system.hair"
+              type="text"
+              value="{{ actor.system.hair }}"
+            />
+          </div>
+          <div class="nte-info">
+            <label>{{ localize 'NTE.Actor.sex' }}</label>
+            <input
+              name="system.sex"
+              type="text"
+              value="{{ actor.system.sex }}"
+            />
+          </div>
+        </div>
+        <div class="nte-signs">
+          <label>{{ localize 'NTE.Actor.signs' }}</label>
+          <textarea name="system.signs" type="text" rows="4">{{
+            actor.system.signs
+          }}</textarea>
+        </div>
+      </section>
+    </div>
+    <div class="nte-histo-collumn-b">
+      <h3>{{ localize 'NTE.Actor.background' }}</h3>
+      <section class="nte-background-section">
+        <div class="nte-background">
+          <textarea
+            class="nte-background-text"
+            name="system.background"
+            rows="22"
+            >{{ actor.system.background }}</textarea
+          >
+        </div>
+      </section>
+    </div>
+  </div>
+  <div class="nte-histo-footer">
+    <h3>{{ localize 'NTE.Actor.notes' }}</h3>
+    <section class="nte-notes-section">
+      <div class="nte-notes">
+        <textarea class="nte-notes-text" name="system.notes" rows="6">{{
+          actor.system.notes
+        }}</textarea>
+      </div>
+    </section>
+  </div>
+</div>

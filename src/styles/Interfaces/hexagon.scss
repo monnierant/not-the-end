@@ -160,13 +160,16 @@
   background-color: var(--hex-color);
   height: calc((var(--hex-size-height) * 1px));
   width: calc((var(--hex-size-width) * 1px));
+  ::placeholder {
+    opacity: 0.3; /* Firefox */
+  }
 }
 
 .hexagon:before {
   content: "";
   position: absolute;
   height: 0;
-  width: calc(var(--hex-size-width)  * 1px);
+  width: calc(var(--hex-size-width) * 1px);
   border-left: calc(var(--hex-size-width-mid) * 1px) solid transparent;
   border-right: calc(var(--hex-size-width-mid) * 1px) solid transparent;
   bottom: 100%;

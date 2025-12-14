@@ -1,0 +1,55 @@
+@use "../Interfaces/dialog";
+
+// Kept from the Faces project only for the actor profile partial
+// (`src/templates/partials/actor/profile.hbs`) after `faces-` -> `nte-` renaming.
+.actor-sheet {
+  .nte-actor-profile-container {
+    section {
+      margin: 0 0 0.5em 0;
+      padding: 0.5em;
+      border: 1px solid #000;
+      border-radius: 5px;
+      background-color: #f0f0f0;
+    }
+    .nte-histo {
+      @include dialog.flex;
+      gap: 0.5rem;
+      align-items: flex-start;
+
+      .nte-info {
+        @include dialog.flex;
+        flex-direction: column;
+        gap: 0;
+        flex-grow: 1;
+        align-items: flex-start;
+      }
+
+      .nte-appearance-section {
+        input {
+          width: 100%;
+        }
+      }
+    }
+
+    .nte-histo-collumn-a {
+      max-width: 60%;
+    }
+
+    .nte-histo-collumn-b {
+      width: 100%;
+    }
+
+    .nte-appearance-minisection,
+    .nte-info-collumn {
+      @include dialog.flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      width: 100%;
+    }
+
+    .nte-background-section {
+      width: 100%;
+    }
+  }
+}

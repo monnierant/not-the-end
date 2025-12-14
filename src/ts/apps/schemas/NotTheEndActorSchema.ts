@@ -54,6 +54,19 @@ export const notTheEndActorSchema = {
   bag1: new fields.StringField({ initial: "" }),
   bag2: new fields.StringField({ initial: "" }),
   risk: new fields.StringField({ initial: "" }),
+
+  profile: new fields.StringField({ initial: "" }),
+  species: new fields.StringField({ initial: "" }),
+  limit: new fields.StringField({ initial: "" }),
+  age: new fields.StringField({ initial: "" }),
+  height: new fields.StringField({ initial: "" }),
+  weight: new fields.StringField({ initial: "" }),
+  eyes: new fields.StringField({ initial: "" }),
+  hair: new fields.StringField({ initial: "" }),
+  sex: new fields.StringField({ initial: "" }),
+  signs: new fields.StringField({ initial: "" }),
+  background: new fields.StringField({ initial: "" }),
+  notes: new fields.StringField({ initial: "" }),
 };
 
 export type NotTheEndActorSchema = typeof notTheEndActorSchema;
