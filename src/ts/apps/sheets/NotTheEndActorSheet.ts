@@ -11,6 +11,7 @@ export default class NotTheEndActorSheet extends ActorSheet {
   private editType: string = "";
   private editValue: number = 0;
   private bag: boolean = false;
+  private profile: boolean = false;
 
   // Define the template to use for this sheet
   override get template() {
@@ -29,6 +30,7 @@ export default class NotTheEndActorSheet extends ActorSheet {
       );
 
       data.bag = this.bag;
+      data.profile = this.profile;
 
       data.edit = {
         type: this.editType,
@@ -49,6 +51,9 @@ export default class NotTheEndActorSheet extends ActorSheet {
     html
       .find(".nte-actor-bag-button")
       .on("click", this._onToogleBag.bind(this));
+    html
+      .find(".nte-actor-profile-button")
+      .on("click", this._onToogleProfile.bind(this));
 
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
@@ -135,6 +140,14 @@ export default class NotTheEndActorSheet extends ActorSheet {
   private async _onToogleBag(event: JQuery.ClickEvent) {
     event.preventDefault();
     this.bag = !this.bag;
+    this.profile = false;
+    this.render();
+  }
+
+  private async _onToogleProfile(event: JQuery.ClickEvent) {
+    event.preventDefault();
+    this.profile = !this.profile;
+    this.bag = false;
     this.render();
   }
 }

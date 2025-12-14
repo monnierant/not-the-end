@@ -27,7 +27,7 @@ declare global {
     "nte.showbag": boolean;
   }
 
-    interface DataModelConfig {
+  interface DataModelConfig {
     Actor: {
       character: typeof NotTheEndActorDataModel;
       npc: typeof NotTheEndNpcRoleActorDataModel;
@@ -40,6 +40,7 @@ async function preloadTemplates(): Promise<any> {
     `systems/${moduleId}/templates/partials/actor/header.hbs`,
     `systems/${moduleId}/templates/partials/actor/traits.hbs`,
     `systems/${moduleId}/templates/partials/actor/bag.hbs`,
+    `systems/${moduleId}/templates/partials/actor/profile.hbs`,
     `systems/${moduleId}/templates/partials/hexagon.hbs`,
     `systems/${moduleId}/templates/partials/piles.hbs`,
   ];
@@ -74,21 +75,18 @@ Hooks.once("init", () => {
   setupSettings();
 });
 
-Hooks.on(
-  "renderChatMessage",
-  (app, html, data): void => {
-    if (app === undefined) {
-      console.log("app is undefined");
-    }
-
-    if (data === undefined) {
-      console.log("data is undefined");
-    }
-
-    if (html === undefined) {
-      console.log("html is undefined");
-    }
-
-    NteRollsRegister.registerTriggers(html);
+Hooks.on("renderChatMessage", (app, html, data): void => {
+  if (app === undefined) {
+    console.log("app is undefined");
   }
-);
+
+  if (data === undefined) {
+    console.log("data is undefined");
+  }
+
+  if (html === undefined) {
+    console.log("html is undefined");
+  }
+
+  NteRollsRegister.registerTriggers(html);
+});

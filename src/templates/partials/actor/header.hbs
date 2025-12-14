@@ -43,6 +43,16 @@
         <i class="fas fa-dice"></i>
         {{localize 'NTE.Actor.roll'}}
       </button>
+    </div>
+    <div class="nte-actor-roll">
+      <button
+        class="nte-actor-profile-button"
+        data-action="profile"
+        title="{{localize (ternary profile 'NTE.Actor.traits' 'NTE.Actor.profile') }}"
+      >
+        <i class="fas {{ternary profile 'fa-circle-user' 'fa-user' }}"></i>
+        {{localize (ternary profile 'NTE.Actor.traits' 'NTE.Actor.profile') }}
+      </button>
       <button
         class="nte-actor-bag-button"
         data-action="bag"
