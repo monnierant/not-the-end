@@ -10,9 +10,24 @@
       "prerelease": true
     }
   ],
-  "repositoryUrl": "https://github.com/monnierant/not-the-end",
   "plugins": [
     "@semantic-release/commit-analyzer",
-    "@semantic-release/github"
+    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/exec",
+      {
+        "prepareCmd": "MODULE_VERSION=${nextRelease.version} GH_TAG=v${nextRelease.version} npm run build && cd dist && zip -r system.zip . -x 'system.zip'",
+        "successCmd": "if [ -n \"$RELEASE_AUTH_TOKEN\" ]; then RELEASE_VERSION=${nextRelease.version} npm run publish; else echo 'FVTT_PUBLISH_TOKEN is not set - skipping Foundry registry publish'; fi"
+      }
+    ],
+    [
+      "@semantic-release/github",
+      {
+        "assets": [
+          { "path": "dist/system.json" },
+          { "path": "dist/system.zip" }
+        ]
+      }
+    ]
   ]
 }
