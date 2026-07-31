@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    branches: [main, beta, alpha]
+
+# This workflow both creates the GitHub release and uploads its assets, so
+# nothing depends on the `release: published` event reaching a second workflow.
+# That cascade is the only reason a PAT used to be required: releases created
+# with the built-in GITHUB_TOKEN deliberately do not trigger further workflows.
+# Keeping it all in one job means the built-in token is enough, and there is no
+# personal access token left to rotate.
+permissions:
+  contents: write
+  issues: write
+  pull-requests: write
+
+concurrency:
+  group: release-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # semantic-release needs the full history and tags to work out the
+          # next version.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # The lockfile is dropped on purpose: it is generated on Windows and pins
+      # a rollup binary that does not resolve on the Linux runner.
+      - name: Install dependencies
+        run: rm -f package-lock.json && npm install
+
+      - name: Run semantic-release
+        run: >
+          npx --yes
+          -p semantic-release@24
+          -p @semantic-release/commit-analyzer@13
+          -p @semantic-release/release-notes-generator@14
+          -p @semantic-release/exec@7
+          -p @semantic-release/github@11
+          semantic-release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_PROJECT: ${{ github.repository }}
+          RELEASE_GITHUB_URL: ${{ github.server_url }}/${{ github.repository }}
+          # Absent on repositories that are not published to the Foundry
+          # registry; the publish step skips itself when it is empty.
+          RELEASE_AUTH_TOKEN: ${{ secrets.FVTT_PUBLISH_TOKEN }}
