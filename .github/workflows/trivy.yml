@@ -1,0 +1,58 @@
+# Scan Trivy du dépôt (vulnérabilités, secrets, mauvaises configurations).
+# Sur la branche par défaut et chaque lundi, le rapport est réimporté dans
+# DefectDojo : GitHub (product type) / <dépôt> (product) / CI (engagement) /
+# trivy-fs (test). Les PR sont scannées sans import.
+# Secret requis : DEFECTDOJO_TOKEN (token API DefectDojo, droits d'import).
+name: Trivy
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: "17 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: trivy-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  trivy:
+    runs-on: ubuntu-latest
+    env:
+      DD_URL: https://defectdojo.amonnier.fr
+      DD_TOKEN: ${{ secrets.DEFECTDOJO_TOKEN }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Scan Trivy
+        uses: aquasecurity/trivy-action@ed142fd0673e97e23eac54620cfb913e5ce36c25 # v0.36.0
+        with:
+          scan-type: fs
+          scan-ref: .
+          scanners: vuln,secret,misconfig
+          format: json
+          output: trivy.json
+          exit-code: "0"
+
+      - name: Importer dans DefectDojo
+        if: ${{ env.DD_TOKEN != '' && github.event_name != 'pull_request' && github.ref_name == github.event.repository.default_branch }}
+        run: |
+          curl -fsS "$DD_URL/api/v2/reimport-scan/" \
+            -H "Authorization: Token $DD_TOKEN" \
+            -F scan_type="Trivy Scan" \
+            -F auto_create_context=true \
+            -F product_type_name=GitHub \
+            -F product_name="${{ github.event.repository.name }}" \
+            -F engagement_name=CI \
+            -F test_title=trivy-fs \
+            -F branch_tag="${{ github.ref_name }}" \
+            -F commit_hash="${{ github.sha }}" \
+            -F build_id="${{ github.run_id }}" \
+            -F source_code_management_uri="${{ github.server_url }}/${{ github.repository }}" \
+            -F file=@trivy.json \
+            -o /dev/null -w "DefectDojo HTTP %{http_code}\n"
